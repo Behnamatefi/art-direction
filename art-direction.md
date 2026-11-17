@@ -10,6 +10,8 @@ Authoritative. Applies to every artifact: websites, web apps, reports, presentat
 
 **For an AI:** treat this as a specification, not inspiration. Before producing anything, state which medium (§10) and which base size you are working at, and confirm you are building all four states — **EN·Dark, EN·Light, FA·Dark, FA·Light** — with both toggles, at both mobile and desktop (§10.4). After producing anything, run §12 and report each line as PASS or FAIL. A FAIL is not a stylistic quibble; it is a defect. Do not ask whether Persian is needed. It is always needed.
 
+For a proposal or report with several chapters, use the long-form web document profile in §10.5. Its palette, navigation, and interaction rules apply only to that profile. Run its additional checks in §12.
+
 **Compressed preamble** (paste this above any prompt when the full file is too long):
 
 > Black is a material with layers, never a backdrop. Depth is 1px hairlines and 2–6% luminance steps — no shadows anywhere. One hot orange-red accent, spent at most once per screen, only as solid fill carrying black text or as a thin structural mark meaning "act here". Three type registers: tight grotesque for display and numerals, uppercase tracked monospace for all metadata, one serif appearing exactly once. Density comes from ruled rows with a label gutter, never from card grids. **Dark is the canonical theme; light is the same design with swapped variables.** **English is the primary language; Persian — not Arabic — is the second, and every artifact ships both, with a language toggle and a theme toggle always present.** All CSS logical properties, no physical directions. English and Persian achieve the same effects by different native means, never by imitation.
@@ -26,7 +28,7 @@ These hold in every medium, at every size, in both themes, in both scripts. Ever
 4. **Density comes from ruled rows with a label gutter, not from boxes.** Category label in the rail, name in the content column, hairline under every row, micro-action flush to the end edge.
 5. **Dark is canonical; light is the same design with swapped variables.** Design in dark, verify in light. Off-white, not white. Warm paper gray, not `#FFF`.
 6. **English is primary; Persian is second; every artifact ships both.** Persian, specifically — not Arabic. Content is authored as parallel payloads, never machine-translated at render time, never shipped in one language "for now".
-7. **A language toggle and a theme toggle are always present.** In every medium, on every artifact. They are the only two persistent controls the system has, and they are non-negotiable furniture.
+7. **A language toggle and a theme toggle are always present.** In every medium, on every artifact. They are the two persistent preference controls.
 8. **Every direction is logical, never physical.** `margin-inline-start`, `border-inline-start`, `text-align: start`. RTL must come free.
 9. **The two scripts never imitate each other.** English and Persian reach the same effect by different native means.
 10. **Nothing announces itself.** Motion is a courtesy. Texture appears once. Restraint is the aesthetic, not a constraint on it.
@@ -91,7 +93,7 @@ Every value is a custom property. **No literal color may appear anywhere except 
 
 ### The accent law
 
-**PERMITTED — the accent may only ever be one of these four things:**
+**PERMITTED — four uses across media, plus the scenario explorer defined in §10.5:**
 
 1. **The single most consequential number.** One solid block, `--accent` fill, `--accent-ink` digits. One block per artifact, never two.
 2. **Highest-severity structural edge.** `border-inline-start: 3px solid var(--accent)` on the row, plus the severity word in `--accent-text`, plus the top segment of the level meter filled. Highest tier only.
@@ -103,8 +105,8 @@ Every value is a custom property. **No literal color may appear anywhere except 
 - Any heading, section title, body sentence, link, hover state, or focus ring. **Focus ring = `2px solid var(--text-primary)`, `outline-offset: 2px`.** Always. Everywhere.
 - Medium and low severity, secondary states, "info", "success". Grayscale only.
 - Card backgrounds, section backgrounds, full-bleed panels, headers, footers, sidebars.
-- Charts, bars, dots, progress fills, meters, sparklines, legends — all grayscale.
-- Gradients, glows, accent `box-shadow`, any animated accent, any accent on a hover or transition.
+- Charts, bars, dots, progress fills, meters, sparklines, legends — all grayscale. A scenario explorer may use the single accent in the long-form profile under the conditions in §10.5.
+- Gradients, glows, accent `box-shadow`, animation of accent colors, or accent styling on hovered controls.
 - Logos, decorative shapes, dividers, bullet glyphs, list markers.
 - Persian running text. `--accent-text` is permitted only on Latin uppercase mono ≥11px, or Vazirmatn ≥12px at weight 700.
 
@@ -248,7 +250,7 @@ Never a machine translation performed at render time. Never a missing `fa` silen
 
 ### 5.5 The two toggles
 
-**Both toggles are present on every artifact, in every medium.** They are the only persistent controls in the system, and they are one fixed component: **the topbar**.
+**Both toggles are present on every artifact, in every medium.** The **topbar** holds both preference controls.
 
 #### The topbar — reference implementation
 
@@ -332,7 +334,7 @@ html[lang="en"] .theme-btn { text-transform: uppercase; letter-spacing: .06em; }
 
 **Behaviour**
 
-- Both states persist to `localStorage`. On first load only: theme respects `prefers-color-scheme` if set, otherwise **dark**; language respects `navigator.language` starting with `fa`, otherwise **English**. After the first explicit toggle, the stored value wins forever.
+- Both states persist to `localStorage`. With no stored preference, use **English + Dark**. If storage is unavailable, the controls still work for the current page.
 - Real `<button>` elements, keyboard-operable, labelled in the current document language.
 - Theme change is a 180ms cross-fade of color variables only. Language change is a hard swap. **No slide, no lateral motion** — §9 forbids it and the toggle is the most tempting place to break it.
 - **Hidden in print and in any exported static form** (`display: none`) — the export has already resolved to one state.
@@ -435,7 +437,7 @@ This is the highest-leverage decision in the direction. Card grids turn a report
 
 ### Texture
 
-**One texture, one place.** A 1px dot grid at 24px pitch, 3% opacity, radial-gradient, on the header block only. Hidden in print. There is no second texture, no noise layer, no gradient mesh, no blur.
+**One texture, one place.** A 1px dot grid at 24px pitch, 3% opacity, radial-gradient, on the header block only. §10.5 may place its single grid on the page instead. Hidden in print. There is no second texture, no noise layer, no gradient mesh, no blur.
 
 ### Imagery
 
@@ -477,7 +479,7 @@ A fixed vocabulary of devices. Use these; do not invent new ones.
 
 **BINARY STATUS.** A 14px square, `1px solid var(--line-strong)`, 3px radius. Done = filled `--text-primary` with a `--surface-page` checkmark. **Never accent — completion is not urgency.**
 
-**CHARTS.** Grayscale, hairline axes, no gridlines except a single baseline rule, no legends where direct labels will do, tabular mono for all values, no fills except `--text-secondary` and `--surface-inset`, no rounded caps, no animation. A chart is a ruled table that happens to have geometry.
+**CHARTS.** Grayscale, hairline axes, no gridlines except a single baseline rule, no legends where direct labels will do, tabular mono for all values, no fills except `--text-secondary` and `--surface-inset`, no rounded caps, no animation. A chart is a ruled table that happens to have geometry. The interactive scenario explorer in §10.5 defines when its active marks may change color or interpolate to a new value.
 
 **THE CALM SECTION.** At least one section must have no device at all beyond the rail: index, title, one-line rationale in `--text-secondary`. Build it in deliberately. It is what makes the instrumented sections legible.
 
@@ -486,6 +488,8 @@ A fixed vocabulary of devices. Use these; do not invent new ones.
 ## 9. MOTION
 
 Motion confirms the artifact is being read and makes state changes feel physical. **A courtesy, not a feature.** Nothing announces itself, repeats, or loops.
+
+§10.5 adds motion for chapter changes and scenario comparisons inside their controls. The rules below govern the reading view.
 
 **PERMITTED**
 
@@ -526,6 +530,8 @@ The system is invariant; only base size, canvas and accent budget change. **Ever
 - Everything is a hairline-ruled row unless §7 earns it a card.
 - No sticky headers, no scroll-spy, no back-to-top button, no cookie-banner-shaped anything.
 - Language switching must not scroll-jump: preserve scroll position by anchoring to the nearest section, not by pixel offset — the two languages have identical section heights but not identical intra-paragraph heights.
+
+Long proposals and reports may use the chapter navigation and document components in §10.5.
 
 **PRINT (applies to any web artifact):**
 
@@ -669,6 +675,57 @@ A poster fit to a 390px screen is unreadable — DISPLAY-XL at long-edge ÷ 12 b
 - Theme cross-fade stays 180ms. Language swap stays hard.
 - `prefers-reduced-motion` is more commonly set on phones. Verify the reduced path is the one you would ship.
 
+### 10.5 LONG-FORM WEB DOCUMENTS
+
+Proposals and reports with several independently readable sections can use this profile. It is derived from the *Custom Packaging Platform* design proposal. Use the content hierarchy and interaction patterns with the current document's own data, scope, and terms.
+
+**Base (BODY):** 16px. **Canvas:** up to 1120px for the document itself, with up to 256px reserved at inline-start when the chapter rail fits. Keep the prose measures in §6. Use the §5.5 topbar in flow with the document wordmark at inline-start and both toggles at inline-end.
+
+#### Palette and opening
+
+The following token overrides are local to this profile. Other roles inherit from §3.
+
+| Token | Dark | Light |
+|---|---|---|
+| `--surface-page` | `#0B0B0C` | `#F2F2F0` |
+| `--surface-raised` | `#141416` | `#FFFFFF` |
+| `--line-hairline` | `#303034` | `#CDCDCA` |
+| `--line-strong` | `#77777C` | `#80807B` |
+| `--text-primary` | `#F2F1EE` | `#161617` |
+| `--text-secondary` | `#B4B3B0` | `#53534F` |
+| `--text-tertiary` | `#969692` | `#656560` |
+| `--accent` | `#FF5A26` | `#FF5A26` |
+| `--accent-ink` | `#101011` | `#101011` |
+| `--scenario-mark` | `#FF8058` | `#AD330B` |
+| `--texture-dot` | `rgba(150,150,150,.12)` | `rgba(105,105,100,.15)` |
+
+- Place the eyebrow and date above a statement and a short lead. When there is a primary decision number, pair it with its unit and a short qualification in one square-cornered callout. It sits beside the lead on wide screens and follows it in the reading order on compact screens. Put two to four supporting facts in the ruled summary strip below.
+- Spend the accent once across the document. A solid number callout takes priority when one exists. If the scenario explorer is the focal point, use `--scenario-mark` for its active bars and square endpoints in that single chart. Keep chapter indicators, controls, reference ticks, and the other data devices neutral. The active bar, square endpoint, and selection label must still identify the selected scenario in monochrome.
+- Use `--texture-dot` for one subtle dot field at 26px pitch. It may extend over the page canvas. Opaque content surfaces stay solid, and print removes the texture.
+- Use `--text-secondary` for resting control labels and `--line-strong` where a control boundary carries meaning. Keep the keyboard focus treatment from §7.
+
+#### Chapter navigation
+
+- Use one labelled `<nav>` with native fragment links in document order. On a viewport at least 1200px wide and taller than 690px, center a fixed chapter rail within the reserved inline-start space. If the labels follow a shallow arc, keep their hit areas clear of each other and of the document. Mark the current chapter with a neutral square and a visible label treatment.
+- When the rail no longer fits, use a sticky single-row chapter strip with its own inline scrolling and an obvious current label. The page itself must fit without horizontal scrolling. Account for the sticky strip in fragment offsets and keep the current link in view inside the strip. Keep the 900px and 640px content breakpoints in §6.
+- Use `aria-current="location"` on at most one link and update it as a section crosses the reading line. Mark the final section when the reader reaches the end. Clicking a link updates the fragment and puts focus on the destination heading or section. Direct links and Back/Forward resolve to the right place. Keyboard focus remains distinct from the section currently in view.
+- Apply logical placement and mirror the arc for RTL. In the absence of script, use plain in-flow anchor navigation. Keep the skip link and anchor destinations operable in all states.
+
+#### Content and data
+
+- **Scope.** Give each workstream a title, a short description, and end-aligned values with units. Follow with a ruled total and any qualifications that change how the figures should be read. On compact screens the description takes the first line and the labelled values take a second row. Preserve the programmatic association between each value and its label.
+- **Scenarios.** Store per-workstream quantities and the unit rate once. Derive costs, totals, bar lengths, reference ticks, fallback content, and print values from that data. Display the recommended scenario first. All scenarios share one zero-based scale, labelled quantities, and directly readable totals. Explain any rounding or assumptions that affect interpretation.
+- **Preview and selection.** Use native buttons in a labelled group. Click, tap, Enter, or Space commits a selection and updates `aria-pressed`. Hover with a fine pointer or move keyboard focus to preview. Show whether values are previewed or selected in text and restore the committed values on leaving the group or pressing Escape. Announce the name and totals in a polite status region on commit. With no script, the recommended scenario and its numbers remain readable.
+- **Plan and cadence.** Show ordered phases as ruled steps. Use a timeline for milestones or deadlines, with a horizontal hairline and labels below on wide screens. At the compact breakpoint, place the line on the inline-start and the labels alongside it. Keep cadence, due dates, and decisions in text so the sequence survives without geometry or color.
+- **Close.** Give the next decision a short closing section and keep at least one section free of devices beyond the rail.
+
+#### Motion, standalone HTML, and print
+
+- Chapter emphasis may move between discrete chapter changes. Scenario geometry may interpolate when displayed values change. Scope these exceptions to the rail and chart, keep transitions at or below 400ms, and update the text values immediately. Favor an ease-out without overshoot. Reduced motion snaps both directly to their final states. Keep page content independent of continuous scroll position and all initial content visible before script runs.
+- A subject-specific, hairline-framed illustration may introduce the document. If it opens as a brief splash, provide a visible keyboard-operable skip button and an Escape action. Dismiss automatically within 1.25 seconds, with each transition at or below 400ms. Skip the splash on direct chapter links, restored history entries, reduced motion, and print. The reading view must already exist beneath it, and an unavailable or interrupted enhancement must leave that view accessible.
+- When delivering a standalone HTML file, bundle the fonts, licenses, and art with the document. The reading view and recommended numbers must work offline and with script disabled.
+- Use the A4 light print rules in §10.1. Remove chapter navigation, the splash, texture, toggles, and scenario controls. Print a labelled table of the recommended scenario with its units and totals, regardless of the last preview or selection. Keep the scope and milestone rows together and the chapter headings with their first content.
+
 ---
 
 ## 11. WHAT WOULD BREAK THIS DIRECTION
@@ -693,7 +750,7 @@ Run every line **in all four states — EN·Dark, EN·Light, FA·Dark, FA·Light
 
 **Language & theme (gate — check these first)**
 
-- [ ] Topbar present in every medium: `.topbar` → `.topbar-actions` → two `.theme-btn` buttons, radius 0, 38px tall, per §5.5.
+- [ ] Topbar present in every medium: `.topbar` → `.topbar-actions` → two `.theme-btn` buttons, radius 0, 38px tall and 44px on coarse pointers, per §5.5.
 - [ ] Uppercase and tracking on the buttons are scoped behind `html[lang="en"]`, not applied globally.
 - [ ] First load resolves to **English + Dark** absent a stored preference.
 - [ ] Both states persist to `localStorage` and survive reload.
@@ -706,8 +763,8 @@ Run every line **in all four states — EN·Dark, EN·Light, FA·Dark, FA·Light
 
 - [ ] Zero literal color values outside the token block — including SVG, charts, inline styles.
 - [ ] At most one accent element visible per viewport / slide / poster.
-- [ ] Accent appears only as one of the four permitted forms (§3).
-- [ ] No accent on any heading, link, hover, focus, chart, gradient, or shadow.
+- [ ] Accent appears only in a form permitted by §3 or the single scenario region defined in §10.5.
+- [ ] Headings, links, control hover states, focus rings, gradients, and shadows carry no accent. Charts use §8 unless §10.5 applies.
 - [ ] Focus ring is `2px solid var(--text-primary)`, offset 2px, everywhere.
 - [ ] Light and dark differ only by token values — no `[data-theme]` layout or structure overrides.
 
@@ -753,14 +810,23 @@ Run every line **in all four states — EN·Dark, EN·Light, FA·Dark, FA·Light
 - [ ] BODY ≥ 15px in both scripts; META / DATA / MICRO not shrunk below their desktop size.
 - [ ] Collapsed rail META line wraps to at most two rows.
 - [ ] Section hairlines still bleed past the content column at mobile padding.
-- [ ] Exactly two breakpoints exist: 900px and 640px.
+- [ ] Content reflows at 900px and 640px. §10.5 may also switch chapter navigation based on available width and height.
 - [ ] Topbar is still two buttons at the inline-end — no hamburger, no drawer.
 - [ ] Decks scale a fixed 1920×1080 stage; posters render as a stacked reading view, not a fit-to-width image.
 
 **Motion & output**
 
-- [ ] No animation exceeds 400ms; none loops; none is horizontal.
-- [ ] No counting-up numbers; no animation on the accent.
+- [ ] Animations finish within 400ms and run once per trigger. Movement in page content stays on the block axis. §10.5 limits movement within the chapter rail and scenario explorer.
+- [ ] Numbers change immediately and accent colors stay constant during transitions.
 - [ ] `prefers-reduced-motion` handled.
 - [ ] Print forces light palette; reveal states forced visible; `break-inside: avoid` on rows and cards.
 - [ ] The artifact still reads correctly in pure monochrome — severity, status and emphasis all survive.
+
+**Long-form web documents (§10.5)**
+
+- [ ] Check the chapter rail and the sticky strip at wide, short, and compact viewports. Fragment links, Back/Forward, focus, and the final active chapter work in both directions. The rail and strip never obscure content.
+- [ ] The scope and scenario totals reconcile with their source quantities and rate. All scenario tracks use the same scale and selected values stay legible at 320px.
+- [ ] Pointer and keyboard previews restore the committed values on exit or Escape. Click, tap, Enter, and Space commit, and the pressed state and announced totals match the committed scenario.
+- [ ] With script disabled, the chapter links, document text, and recommended figures still work. When standalone HTML is required, check the file offline.
+- [ ] Reduced motion shows the final state immediately. A splash, if present, can be skipped and disappears within 1.25 seconds. Direct chapter links open without it.
+- [ ] Print after selecting a different scenario. The A4 output uses the active language, forces light, and includes the labelled recommended-scenario table and its totals.

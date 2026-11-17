@@ -4,6 +4,18 @@
 
 A single-file art direction spec, written to be handed to an AI. Point Claude, ChatGPT, Cursor or v0 at [`art-direction.md`](art-direction.md) and ask for a website, a deck, a poster or a report — the output comes back on-system, in four states, without further instruction.
 
+## Quick start
+
+Give your agent this prompt and describe what you want to create:
+
+```text
+Read https://github.com/Behnamatefi/art-direction/blob/main/art-direction.md
+and apply its art direction to my project. Follow the guidance for the
+appropriate medium, then check the result against the acceptance checklist.
+```
+
+The [guide](art-direction.md) covers English and Persian, dark and light themes, mobile, and print. An [agent skill](skills/art-direction/SKILL.md) is also available for compatible tools.
+
 ![Specimen — presentation, web and poster in dark and light, with the palette and type tokens](docs/art-direction-specimen.jpg)
 
 ---
@@ -36,6 +48,8 @@ Build a landing page for a developer tools company. Three sections.
 
 **Reviewing existing work.** §12 is a checklist an AI can run against code it did not write. Several lines are literal grep tests.
 
+**Proposals and reports.** Use the [long-form web document profile](art-direction.md#105-long-form-web-documents) for a chaptered document with a summary strip, ruled scope rows, an interactive scenario comparison, and a milestone timeline. The profile also specifies the compact chapter strip, the offline HTML option, and the A4 print view.
+
 ---
 
 ## Contents
@@ -52,7 +66,7 @@ Build a landing page for a developer tools company. Three sections.
 | 7 | Surface, depth & imagery | No shadows; the four radii; why cards are rationed |
 | 8 | Data expression | A fixed vocabulary — level meters, dot bars, dotted tracks, timelines |
 | 9 | Motion | What is permitted, and why horizontal slide-ins are banned outright |
-| 10 | Medium translations | Web, presentations, posters/print, and **mobile & touch** |
+| 10 | Medium translations | Web, presentations, posters/print, mobile & touch, and **long-form web documents** |
 | 11 | What would break this | Eleven named failure modes |
 | 12 | Acceptance checklist | Run in all four states; report PASS/FAIL |
 
@@ -82,6 +96,8 @@ A language toggle and a theme toggle are non-negotiable furniture in every mediu
 ## Provenance
 
 Distilled from a working art direction, then generalised across media. The topbar in §5.5 is the real component from [learn-roadmap.netlify.app](https://learn-roadmap.netlify.app/), transcribed rather than redesigned.
+
+The long-form profile is based on the *Custom Packaging Platform* design proposal.
 
 The specimen image above is generated from the spec's own tokens — see [`tools/specimen.js`](tools/specimen.js).
 
