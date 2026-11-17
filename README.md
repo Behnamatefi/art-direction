@@ -6,12 +6,26 @@ A single-file art direction spec, written to be handed to an AI. Point Claude, C
 
 ## Quick start
 
-Give your agent this prompt and describe what you want to create:
+Copy this prompt into your agent to set up the art direction in your project.
 
 ```text
-Read https://github.com/Behnamatefi/art-direction/blob/main/art-direction.md
-and apply its art direction to my project. Follow the guidance for the
-appropriate medium, then check the result against the acceptance checklist.
+Set up the Art Direction guide in this project.
+
+1. Read https://raw.githubusercontent.com/Behnamatefi/art-direction/main/art-direction.md
+   and save a local copy as art-direction.md in the project.
+2. Add a short note to AGENTS.md, creating it if needed, instructing agents
+   to read art-direction.md before creating or reviewing visual work.
+   Preserve existing instructions.
+3. Apply the guide's appropriate medium-specific guidance when building.
+   Check the result against its acceptance checklist and report any
+   checks you could not verify.
+```
+
+Then describe what you want to make. For example:
+
+```text
+Build a three-section landing page for a coffee shop using the art direction.
+Include a menu, opening hours, and a contact section.
 ```
 
 The [guide](art-direction.md) covers English and Persian, dark and light themes, mobile, and print. An [agent skill](skills/art-direction/SKILL.md) is also available for compatible tools.
