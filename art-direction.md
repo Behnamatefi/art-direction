@@ -8,13 +8,13 @@ Authoritative. Applies to every artifact: websites, web apps, reports, presentat
 
 **For a human:** §1 is the thesis. §2–§9 are the invariant system. §10 translates it per medium. §11 is what kills it. §12 is the pass/fail gate.
 
-**For an AI:** treat this as a specification, not inspiration. Before producing anything, state which medium (§10) and which base size you are working at, and confirm you are building all four states — **EN·Dark, EN·Light, FA·Dark, FA·Light** — with both toggles, at both mobile and desktop (§10.4). After producing anything, run §12 and report each line as PASS or FAIL. A FAIL is not a stylistic quibble; it is a defect. Do not ask whether Persian is needed. It is always needed.
+**For an AI:** treat this as a specification, not inspiration. Ask whether the user wants English only or multiple languages unless their request already specifies the answer. If clarification is unavailable, use English only. State the medium and base size, implement the theme changer, and check dark and light at relevant sizes. When multiple languages are requested, confirm which ones and verify each in both themes. After producing anything, run applicable §12 checks and report failures and checks that could not be verified.
 
 For a proposal or report with several chapters, use the long-form web document profile in §10.5. Its palette, navigation, and interaction rules apply only to that profile. Run its additional checks in §12.
 
 **Compressed preamble** (paste this above any prompt when the full file is too long):
 
-> Black is a material with layers, never a backdrop. Depth is 1px hairlines and 2–6% luminance steps — no shadows anywhere. One hot orange-red accent, spent at most once per screen, only as solid fill carrying black text or as a thin structural mark meaning "act here". Three type registers: tight grotesque for display and numerals, uppercase tracked monospace for all metadata, one serif appearing exactly once. Density comes from ruled rows with a label gutter, never from card grids. **Dark is the canonical theme; light is the same design with swapped variables.** **English is the primary language; Persian — not Arabic — is the second, and every artifact ships both, with a language toggle and a theme toggle always present.** All CSS logical properties, no physical directions. English and Persian achieve the same effects by different native means, never by imitation.
+> Black is a material with layers, never a backdrop. Depth is 1px hairlines and 2–6% luminance steps — no shadows anywhere. One hot orange-red accent, spent at most once per screen, only as solid fill carrying black text or as a thin structural mark meaning "act here". Three type registers: tight grotesque for display and numerals, uppercase tracked monospace for all metadata, one serif appearing exactly once. Density comes from ruled rows with a label gutter, never from card grids. **Dark is the canonical theme; light is the same design with swapped variables.** **English is the default. Ask whether additional languages are wanted. Every interactive artifact has a theme changer; add a language changer when multiple languages are requested.** All CSS logical properties, no physical directions. English and Persian achieve the same effects by different native means, never by imitation.
 
 ---
 
@@ -27,10 +27,10 @@ These hold in every medium, at every size, in both themes, in both scripts. Ever
 3. **Type is zoned into three registers, hard.** A tight grotesque for display and numerals (near-zero to negative tracking); an uppercase monospace with wide tracking for *all* metadata; a single serif that appears exactly once per artifact. Numerals get the largest optical treatment — tabular, slashed zero.
 4. **Density comes from ruled rows with a label gutter, not from boxes.** Category label in the rail, name in the content column, hairline under every row, micro-action flush to the end edge.
 5. **Dark is canonical; light is the same design with swapped variables.** Design in dark, verify in light. Off-white, not white. Warm paper gray, not `#FFF`.
-6. **English is primary; Persian is second; every artifact ships both.** Persian, specifically — not Arabic. Content is authored as parallel payloads, never machine-translated at render time, never shipped in one language "for now".
-7. **A language toggle and a theme toggle are always present.** In every medium, on every artifact. They are the two persistent preference controls.
+6. **English is the default.** Ask whether the user wants multiple languages. When requested, author complete parallel payloads for the selected languages. Apply the Persian rules in §5 when Persian is requested.
+7. **A theme changer is present by default.** Interactive artifacts offer dark and light. Add a language changer when multiple languages are requested. For static exports, provide both theme variants.
 8. **Every direction is logical, never physical.** `margin-inline-start`, `border-inline-start`, `text-align: start`. RTL must come free.
-9. **The two scripts never imitate each other.** English and Persian reach the same effect by different native means.
+9. **Respect each script.** English and Persian reach the same effect by different native means when both are requested.
 10. **Nothing announces itself.** Motion is a courtesy. Texture appears once. Restraint is the aesthetic, not a constraint on it.
 
 ---
@@ -190,14 +190,14 @@ Weights shift up: Persian carries structure with weight where Latin uses case an
 
 ### 5.1 The two axes
 
-Every artifact exists in a 2×2: **{English, Persian} × {Dark, Light}**. All four states are first-class and must be verified. Their defaults are not equal:
+English is the default language. Ask whether the user wants English only or multiple languages, unless already specified. If no answer is available, proceed in English. Each selected language has dark and light states, all of which must be verified:
 
 | Axis | Primary | Second |
 |---|---|---|
 | Language | **English** (`en`, `ltr`) | **Persian** (`fa`, `rtl`) |
 | Theme | **Dark** | **Light** |
 
-Default state on first load: **English + Dark.** English-primary means English is the authoring language, the fallback when a Persian string is missing, and the language of all code, tokens, class names, filenames and alt text. It does not mean Persian is a translation layer bolted on afterward — see 5.4.
+Default state on first load: **English + Dark.** English-primary means English is the default content language. When Persian is selected, provide complete Persian content as described in §5.4.
 
 ### 5.2 Persian, specifically — not Arabic
 
@@ -250,7 +250,7 @@ Never a machine translation performed at render time. Never a missing `fa` silen
 
 ### 5.5 The two toggles
 
-**Both toggles are present on every artifact, in every medium.** The **topbar** holds both preference controls.
+**The theme changer is present by default.** Add the language button only for multilingual artifacts. The topbar holds the available preference controls. The example below shows a multilingual configuration.
 
 #### The topbar — reference implementation
 
@@ -319,12 +319,12 @@ html[lang="en"] .theme-btn { text-transform: uppercase; letter-spacing: .06em; }
 
 **Why it is built this way**
 
-- **Two square buttons, not a segmented pill.** `border-radius: 0`. The topbar is the one place the system's squareness is most visible, and rounding it would make it read as chrome. It is **not** one of the 999px elements.
+- **Square buttons, not a segmented pill.** `border-radius: 0`. The topbar is the one place the system's squareness is most visible, and rounding it would make it read as chrome. It is **not** one of the 999px elements.
 - **38×38 for the icon button, 38px tall for the text button.** One height, two widths.
 - **`--surface-inset` fill on a `--line-hairline` border.** The buttons sit *into* the page, not on top of it — depth by luminance step and hairline, per §7.
 - **Resting color is `--text-quiet`; hover lifts to `--text-primary`.** That is the entire state model. No background change, no border change, no accent, ever. Hover is behind `(hover: hover) and (pointer: fine)` — on touch it simply does not exist, and the `:active` press carries the feedback.
-- **44px on coarse pointers.** 38px is a mouse dimension. The topbar never becomes a hamburger, a drawer, or an overflow menu — at any width it stays two buttons at the inline-end.
-- **`transform: scale(.97)` on `:active`, 100ms.** The one permitted transform in the system — a press affordance, not an animation (§9).
+- **44px on coarse pointers.** 38px is a mouse dimension. The topbar never becomes a hamburger, a drawer, or an overflow menu — at any width the available controls stay at the inline-end.
+- **`transform: scale(.97)` on `:active`, 100ms.** A subtle press affordance, subject to the frequency and accessibility guidance in §9.
 - **`html[lang="en"]` scoping is the mechanism, not a detail.** Uppercase and `.06em` tracking live behind the Latin selector so Persian gets neither, automatically. This is §5.7 enforced in CSS rather than by discipline.
 
 **Labels**
@@ -334,9 +334,9 @@ html[lang="en"] .theme-btn { text-transform: uppercase; letter-spacing: .06em; }
 
 **Behaviour**
 
-- Both states persist to `localStorage`. With no stored preference, use **English + Dark**. If storage is unavailable, the controls still work for the current page.
+- Theme and any selected language persist to `localStorage`. With no stored preference, use **English + Dark**. If storage is unavailable, controls still work for the current page.
 - Real `<button>` elements, keyboard-operable, labelled in the current document language.
-- Theme change is a 180ms cross-fade of color variables only. Language change is a hard swap. **No slide, no lateral motion** — §9 forbids it and the toggle is the most tempting place to break it.
+- Theme change is a 180ms cross-fade of color variables only. Language change is a hard swap. Keep preference changes immediate for frequent and keyboard use.
 - **Hidden in print and in any exported static form** (`display: none`) — the export has already resolved to one state.
 
 **Placement, per medium** — always logical, never `right:` or `left:`:
@@ -368,7 +368,7 @@ Grid + logical properties means the rail flips automatically. **Never write a se
 - No Arabic ك / ي codepoints; no Arabic-first font; no tashkeel; no kashida justification.
 - No missing ZWNJ in prefixed or suffixed words.
 - No monospace face for Persian metadata.
-- No lateral motion (see §9).
+- Motion respects the reading direction (see §9).
 - No English left in a Persian render because the string was never translated.
 
 ---
@@ -487,35 +487,31 @@ A fixed vocabulary of devices. Use these; do not invent new ones.
 
 ## 9. MOTION
 
-Motion confirms the artifact is being read and makes state changes feel physical. **A courtesy, not a feature.** Nothing announces itself, repeats, or loops.
+Motion makes a change legible, confirms an action, establishes spatial relationships, or explains a concept. Match the visual language and the frequency of use. A rare editorial moment can be expressive when it serves the content.
 
-§10.5 adds motion for chapter changes and scenario comparisons inside their controls. The rules below govern the reading view.
+### Find opportunities
 
-**PERMITTED**
+Inspect the product, its interaction frequency, existing motion tokens, and user flows. Consider press feedback, changing states, popovers, occasional list changes, gestures, and first-use moments. Gate each candidate by frequency, purpose, timing, and whether it helps the task. Reject frequently repeated or keyboard-triggered motion and decorative movement of information users need to read. Suggest up to five high-value opportunities with location, purpose, frequency, exact properties, timing, easing, and reduced-motion behavior. Mention representative rejected candidates and why. An opportunity review is read-only unless the user also asks for implementation.
 
-- Section blocks reveal **once** on entry: opacity 0→1 with a 6px upward translate, 320ms, `cubic-bezier(0.22, 0.61, 0.36, 1)`, 40ms stagger, `IntersectionObserver` at 12% visibility, then unobserved.
-- Theme toggle: 180ms cross-fade of color variables only.
-- Row hover: 120ms linear background.
-- Button press: `transform: scale(.97)`, 100ms ease, on `:active` only. The single permitted transform outside the entry reveal — it is a press affordance, not an animation.
-- Slide transitions: a hard cut, or the same 320ms opacity+6px rise. Nothing else.
+### Craft and implementation
 
-**FORBIDDEN**
+- Use a responsive ease-out such as `cubic-bezier(0.23, 1, 0.32, 1)` for entrances and exits, and `cubic-bezier(0.77, 0, 0.175, 1)` for deliberate on-screen movement. Use immediate state changes for frequently repeated and keyboard-triggered actions.
+- Start press feedback around 100–160ms, tooltips at 125–200ms, and dropdowns at 150–250ms. Keep ordinary UI transitions under 300ms. Rare explanatory sequences can run longer when needed and must never delay interaction.
+- Prefer transforms and opacity. Profile paint-heavy effects and layout animation on target devices when unavoidable. Avoid `transition: all`, unnecessary layers, and unsupported claims that any animation technique is always GPU accelerated.
+- Make rapidly toggled and gesture-driven motion interruptible. Prefer transitions for retargetable UI and use springs when gesture physics add value. Anchored surfaces originate at their trigger. Dialogs originate at their center. Avoid scaling from zero.
+- Use subtle press feedback, such as `scale(.97)`, where it fits. Keep focus, labels, state, and essential content available immediately. Only use hover motion for fine pointers that support hover.
+- Respect reading direction when motion conveys direction. Use small, purposeful staggers only for occasional grouped entrances. Avoid looping decoration and animated numerical data in functional interfaces.
+- Honor `prefers-reduced-motion`: remove spatial movement and offer an immediate or gentle opacity transition. Ensure animated content remains accessible if scripts fail and appears in print.
 
-- Counting-up numbers.
-- Bounce, spring, overshoot, elastic.
-- **Horizontal slide-ins.** "Forward" in LTR reads "backward" in RTL — lateral motion cannot be bilingual and is banned outright.
-- Parallax. Anything tied to continuous scroll position.
-- Letter-by-letter reveals, typewriters, marquees.
-- Any animation on the accent color.
-- Anything exceeding 400ms.
+### Review
 
-`prefers-reduced-motion: reduce` kills every reveal and transform. Color transitions survive.
+Review each motion for purpose, frequency, timing, easing, origin, interruption, performance, reduced motion, and cohesion. Prefer removing or reducing unnecessary motion before polishing it. Inspect rapid reversal, keyboard and touch behavior, and reduced-motion states. When visual feel cannot be observed, report it as unverified; inspect slowed playback and real devices where feasible. For an explicit motion review, report findings in a Before / After / Why table with locations and a verdict.
 
 ---
 
 ## 10. MEDIUM TRANSLATIONS
 
-The system is invariant; only base size, canvas and accent budget change. **Every medium ships the language toggle and the theme toggle** (§5.5), defaults to **English + Dark**, and must be verified in all four states.
+The system is invariant; only base size, canvas and accent budget change. **Every interactive medium ships a theme changer** (§5.5), defaults to **English + Dark**, and is verified in both themes for each selected language. Static exports include both theme variants.
 
 ### 10.1 WEB / HTML
 
@@ -539,7 +535,7 @@ Long proposals and reports may use the chapter navigation and document component
 @page { size: A4; margin: 16mm 14mm; }
 ```
 
-Print **forces the light palette** regardless of toggle, and hides both toggles. This is not a preference overriding dark-canonical — ink is not light, and a dark artifact printed on white stock is a different object. The dark theme is the screen truth; light is the paper truth. Print in whichever language is currently active; to deliver both, export twice. Keep the accent with `print-color-adjust: exact`. `break-inside: avoid` on cards and item rows; `break-after: avoid` on section headers. Hairlines become `0.5pt solid #C9C6C1`. Dot grid, theme toggle and hover affordances become `display: none`. **Force `.reveal { opacity: 1 !important; transform: none !important; }`** — an un-fired `IntersectionObserver` is the classic cause of a blank printed PDF.
+Print defaults to the light palette and hides the controls. Provide dark and light variants for static deliverables. This is not a preference overriding dark-canonical — ink is not light, and a dark artifact printed on white stock is a different object. The dark theme is the screen truth; light is the paper truth. Print in whichever language is currently active; to deliver both, export twice. Keep the accent with `print-color-adjust: exact`. `break-inside: avoid` on cards and item rows; `break-after: avoid` on section headers. Hairlines become `0.5pt solid #C9C6C1`. Dot grid, theme toggle and hover affordances become `display: none`. **Force `.reveal { opacity: 1 !important; transform: none !important; }`** — an un-fired `IntersectionObserver` is the classic cause of a blank printed PDF.
 
 ### 10.2 PRESENTATIONS
 
@@ -548,8 +544,8 @@ Print **forces the light palette** regardless of toggle, and hides both toggles.
 **Margins:** 96px all sides. Content never enters the margin. Bottom 128px reserved for the rail line and slide index.
 **Accent budget:** at most one accent mark per slide, and **at least two-thirds of slides carry none.** A deck where every slide has orange is a failed deck.
 
-- **The rail becomes a persistent footer rule:** a hairline across the full canvas 128px from the bottom, with section index, section title in META, and slide number in DATA below it at the inline-start, and **the language + theme toggle cluster at the inline-end**. It is the deck's spine — identical on every slide, never animated. In RTL the whole spine mirrors for free.
-- **The deck is one document in two languages, not two decks.** Slide count, slide order and slide archetypes are identical in both; only the payload changes. If a slide only works in English, it is not a slide.
+- **The rail becomes a persistent footer rule:** a hairline across the full canvas 128px from the bottom, with section index, section title in META, and slide number in DATA below it at the inline-start, and **the theme control and any language control at the inline-end**. It is the deck's spine — identical on every slide, never animated. In RTL the whole spine mirrors for free.
+- **For multilingual decks, use one document with parallel language payloads.** Slide count, slide order and slide archetypes are identical in both; only the payload changes. If a slide only works in English, it is not a slide.
 - **Slide archetypes, and only these:**
   1. **Statement** — DISPLAY-XL, one line, `--text-primary`, on `--surface-page`. Nothing else on the slide. No subtitle.
   2. **Lead** — the serif passage. Occurs exactly once in the deck, usually slide 2.
@@ -559,9 +555,9 @@ Print **forces the light palette** regardless of toggle, and hides both toggles.
   6. **Full-bleed image** — radius 0, no caption overlay; caption sits below in META on `--surface-page`.
   7. **Section divider** — SECTION register centered on `--surface-sunken`, with the index numeral in NUMERAL at `--text-quiet`.
 - **Never:** a 3-up card grid of equal boxes. A bulleted list with glyphs. A logo on every slide. Slide-number chrome beyond the DATA numeral. Speaker photos. Icons standing in for concepts.
-- **Transitions:** hard cut by default. If animated, the §9 opacity+6px rise, once, no stagger longer than 3 steps.
+- **Transitions:** use a hard cut or purposeful motion following §9. Keep slide content immediately accessible.
 - **Dark is the default deck.** Light is one toggle away for a bright room or a printed handout — never a separately built deck.
-- **Build decks as HTML, not `.pptx`, whenever possible.** The toggles, the logical properties and the per-block direction detection are the whole system, and none of them survive a slide binary. If a `.pptx` is contractually required, export four files — EN·Dark, EN·Light, FA·Dark, FA·Light — and treat the HTML as the source of truth.
+- **Build decks as HTML, not `.pptx`, whenever possible.** The toggles, the logical properties and the per-block direction detection are the whole system, and none of them survive a slide binary. If a `.pptx` is contractually required, export each selected language in dark and light — and treat the HTML as the source of truth.
 
 ### 10.3 POSTERS & PRINT
 
@@ -570,7 +566,7 @@ Print **forces the light palette** regardless of toggle, and hides both toggles.
 **Margins:** long edge ÷ 20, equal on all sides.
 **Accent budget:** **exactly one accent zone per poster.** The poster has a single focal and the orange marks it.
 
-**Source, states and deliverables.** A poster is authored as **one HTML file with both toggles live** — that is the source of truth, the review artifact, and the screen deliverable. Print is an export from it, not a separate build. The print deliverable set is **four PDFs: EN·Dark, EN·Light, FA·Dark, FA·Light**, with the toggles hidden. Which one goes to the printer is a production decision (stock, ink coverage, budget), not an art-direction one.
+**Source, states and deliverables.** A poster is authored as **one HTML file with the theme changer and, when multilingual, the language changer live** — that is the source of truth, the review artifact, and the screen deliverable. Print is an export from it, not a separate build. The print deliverable set is **PDFs for each selected language in dark and light**, with the toggles hidden. Which one goes to the printer is a production decision (stock, ink coverage, budget), not an art-direction one.
 
 - **Dark remains canonical on screen.** For paper, light is the practical default — full-coverage black on large format is expensive, unreliable and shows every handling mark. Dark print is reserved for genuinely black stock or a controlled press run.
 - **The rail becomes a column of the grid:** a fixed-width metadata column running the full height at the start edge, carrying the index, the date, the authorship, the section labels — with a single hairline separating it from the content column, running the full poster height. This is the structural signature at poster scale.
@@ -613,7 +609,7 @@ body { min-height: 100dvh; -webkit-tap-highlight-color: transparent; }
 - **Minimum target 44×44 CSS px, with 8px of clear space between adjacent targets.** 44 is a platform constant, not a spacing value — it is the single exemption from §6's scale.
 - **Every hover state sits behind `@media (hover: hover) and (pointer: fine)`.** A hover state that is also the only way to discover something is a defect on touch.
 - Row `:active` = background to `--surface-inset`, instantly. The 120ms hover transition is a pointer nicety; touch needs the state now.
-- **No swipe gestures, no long-press, no pull-to-refresh interception, no bottom sheets.** The artifact is a document; it scrolls.
+- **Avoid unnecessary custom gestures and pull-to-refresh interception. Use accessible, interruptible gesture interactions when the product needs them.** The artifact is a document; it scrolls.
 - No `:hover`-revealed micro-actions in rows. If an action matters it is always visible; if it does not, it is not in the row.
 
 #### Type on mobile
@@ -649,7 +645,7 @@ Registers do not change — only their base and, for the two largest, their mult
 
 - Section padding steps 64 → 48 → 32px. Row padding stays 20px — compressing it is what turns a document into a settings screen.
 - Hairlines stay 1px. Do not "improve" them to 0.5px on high-DPI: they disappear at arm's length outdoors, and the system has no shadow to fall back on.
-- **The topbar does not change shape** — two buttons, inline-end, 44px tall on touch. No hamburger.
+- **The topbar does not change shape** — theme and any language buttons stay inline-end, 44px tall on touch. No hamburger.
 
 #### Presentations on mobile
 
@@ -670,8 +666,8 @@ A poster fit to a 390px screen is unreadable — DISPLAY-XL at long-edge ÷ 12 b
 
 #### Motion on mobile
 
-- Entry reveals keep the §9 spec but cap the stagger at **3 steps** — a long stagger on a short viewport means the last item animates after the user has already scrolled past it.
-- No scroll-linked anything (already forbidden in §9; phones are where it is most tempting and most janky).
+- Entry reveals follow §9 and cap the stagger at **3 steps** — a long stagger on a short viewport means the last item animates after the user has already scrolled past it.
+- Avoid continuous scroll-linked decoration on mobile. Profile any necessary scroll-linked explanation.
 - Theme cross-fade stays 180ms. Language swap stays hard.
 - `prefers-reduced-motion` is more commonly set on phones. Verify the reduced path is the one you would ship.
 
@@ -679,7 +675,7 @@ A poster fit to a 390px screen is unreadable — DISPLAY-XL at long-edge ÷ 12 b
 
 Proposals and reports with several independently readable sections can use this profile. It is derived from the *Custom Packaging Platform* design proposal. Use the content hierarchy and interaction patterns with the current document's own data, scope, and terms.
 
-**Base (BODY):** 16px. **Canvas:** up to 1120px for the document itself, with up to 256px reserved at inline-start when the chapter rail fits. Keep the prose measures in §6. Use the §5.5 topbar in flow with the document wordmark at inline-start and both toggles at inline-end.
+**Base (BODY):** 16px. **Canvas:** up to 1120px for the document itself, with up to 256px reserved at inline-start when the chapter rail fits. Keep the prose measures in §6. Use the §5.5 topbar in flow with the document wordmark at inline-start and the theme control and any language control at inline-end.
 
 #### Palette and opening
 
@@ -734,7 +730,7 @@ The following token overrides are local to this profile. Other roles inherit fro
 2. **Reaching for a card grid.** `repeat(3, 1fr)` of equal boxes is the failure mode in every medium: the three-column feature section, the three-card slide, the three-panel poster. Ruled rows with a label gutter carry density while staying calm.
 3. **Making Persian wear Latin's clothes.** No `text-transform: uppercase`. No `letter-spacing`. No Vazirmatn Light below 15px on black. No Latin digits inside a Persian sentence. No monospace face for Persian metadata. And no physical CSS directions anywhere.
 4. **Shipping "Arabic support" and calling it Persian.** Arabic-Indic digits, an Arabic ك or ي, an Arabic-first font, a missing ZWNJ — any one of these tells a Persian reader in the first line that nobody who reads the language looked at this. It is not a localisation bug; it reads as contempt.
-5. **Treating Persian as a later phase.** A language toggle that reveals half-translated content, or an artifact shipped English-only "for now", breaks the direction more thoroughly than any color mistake. Both payloads exist or the artifact does not.
+5. **Shipping incomplete translations.** When multiple languages are requested, every selected language must cover the user-facing content.
 6. **Designing in light and checking dark afterward.** Dark is canonical: hairline contrast, luminance steps and the accent's weight are all calibrated for it. Work derived from light and inverted always shows — the hairlines go muddy and the accent goes hot.
 7. **Introducing a shadow "just for this one element."** The moment one element floats, hairlines stop reading as structure and start reading as an omission. There is no exception, including modals, dropdowns and tooltips — those get `--surface-raised` + `--line-strong`.
 8. **Letting the serif appear twice.** Its authority is entirely a function of being unique. A second use halves it; a third destroys it.
@@ -746,17 +742,17 @@ The following token overrides are local to this profile. Other roles inherit fro
 
 ## 12. ACCEPTANCE CHECKLIST
 
-Run every line **in all four states — EN·Dark, EN·Light, FA·Dark, FA·Light**. Report PASS / FAIL. Any FAIL is a defect, not a preference.
+Run applicable checks in dark and light for every selected language. Mark language-specific checks not applicable when that language is absent. Report PASS / FAIL. Any FAIL is a defect, not a preference.
 
 **Language & theme (gate — check these first)**
 
-- [ ] Topbar present in every medium: `.topbar` → `.topbar-actions` → two `.theme-btn` buttons, radius 0, 38px tall and 44px on coarse pointers, per §5.5.
+- [ ] Topbar has a theme button and, when multilingual, a language button. Buttons have radius 0, are 38px tall and 44px on coarse pointers, per §5.5.
 - [ ] Uppercase and tracking on the buttons are scoped behind `html[lang="en"]`, not applied globally.
 - [ ] First load resolves to **English + Dark** absent a stored preference.
-- [ ] Both states persist to `localStorage` and survive reload.
+- [ ] Theme and any selected language persist to `localStorage` and survive reload.
 - [ ] Toggles are keyboard-operable, `aria-pressed` correct, never accent-colored, hidden in print.
-- [ ] Every user-facing string exists in both `en` and `fa`. Zero English strings visible in the Persian render.
-- [ ] Toggling language moves no hairline — section and row heights identical in both.
+- [ ] Every user-facing string exists in each requested language. When Persian is selected, its render has no untranslated strings.
+- [ ] When multilingual, verify language changes preserve reading position and produce no clipped content.
 - [ ] Toggling theme changes color variables only; zero layout or structure difference.
 
 **Color**
@@ -776,7 +772,7 @@ Run every line **in all four states — EN·Dark, EN·Light, FA·Dark, FA·Light
 - [ ] All metadata is uppercase tracked mono (Latin) / weight-500 tertiary (Persian).
 - [ ] Latin body ≤ 68ch; Persian body ≤ 640px equivalent.
 
-**Persian, specifically**
+**Persian, specifically** (when Persian is requested)
 
 - [ ] Block direction set by Perso-Arabic ratio ≥ 0.35 per block, not `dir="auto"`, and independent of the document toggle.
 - [ ] `[dir="rtl"] * { letter-spacing: 0 !important; }` present.
@@ -799,7 +795,7 @@ Run every line **in all four states — EN·Dark, EN·Light, FA·Dark, FA·Light
 - [ ] Exactly one texture, in exactly one place.
 - [ ] No card grid of equal boxes anywhere.
 
-**Mobile & touch** (verify at 390×844 and 320×568, in all four states)
+**Mobile & touch** (verify at 390×844 and 320×568, in each selected language and theme)
 
 - [ ] `viewport-fit=cover` meta present; zoom not disabled; no `maximum-scale`.
 - [ ] `100dvh` used, never `100vh`. `-webkit-text-size-adjust: 100%` set.
@@ -811,15 +807,15 @@ Run every line **in all four states — EN·Dark, EN·Light, FA·Dark, FA·Light
 - [ ] Collapsed rail META line wraps to at most two rows.
 - [ ] Section hairlines still bleed past the content column at mobile padding.
 - [ ] Content reflows at 900px and 640px. §10.5 may also switch chapter navigation based on available width and height.
-- [ ] Topbar is still two buttons at the inline-end — no hamburger, no drawer.
+- [ ] Topbar retains the theme button and any language button at the inline-end.
 - [ ] Decks scale a fixed 1920×1080 stage; posters render as a stacked reading view, not a fit-to-width image.
 
 **Motion & output**
 
-- [ ] Animations finish within 400ms and run once per trigger. Movement in page content stays on the block axis. §10.5 limits movement within the chapter rail and scenario explorer.
-- [ ] Numbers change immediately and accent colors stay constant during transitions.
+- [ ] Motion has a purpose and suits its frequency. Ordinary UI transitions finish under 300ms. Longer explanatory motion has a reason and never blocks interaction.
+- [ ] Functional data remains readable, interactive motion is interruptible, and accent colors stay constant during transitions.
 - [ ] `prefers-reduced-motion` handled.
-- [ ] Print forces light palette; reveal states forced visible; `break-inside: avoid` on rows and cards.
+- [ ] Print defaults to light and supports requested static theme variants; reveal states forced visible; `break-inside: avoid` on rows and cards.
 - [ ] The artifact still reads correctly in pure monochrome — severity, status and emphasis all survive.
 
 **Long-form web documents (§10.5)**

@@ -2,7 +2,7 @@
 
 **A black document that reads like paper and is structured like an instrument.**
 
-A single-file art direction spec, written to be handed to an AI. Point Claude, ChatGPT, Cursor or v0 at [`art-direction.md`](art-direction.md) and ask for a website, a deck, a poster or a report — the output comes back on-system, in four states, without further instruction.
+A single-file art direction spec, written to be handed to an AI. Point Claude, ChatGPT, Cursor or v0 at [`art-direction.md`](art-direction.md) and ask for a website, a deck, a poster or a report — the guide supplies the visual direction, theme behavior, and motion guidance.
 
 ## Quick start
 
@@ -42,7 +42,7 @@ This file removes those decisions. It is written as a specification with pass/fa
 
 The direction in one paragraph:
 
-> Black is a material with layers, never a backdrop. Depth is 1px hairlines and 2–6% luminance steps — no shadows anywhere. One hot orange-red accent, spent at most once per screen, only as solid fill carrying black text or as a thin structural mark meaning "act here". Three type registers: tight grotesque for display and numerals, uppercase tracked monospace for all metadata, one serif appearing exactly once. Density comes from ruled rows with a label gutter, never from card grids. Dark is the canonical theme; light is the same design with swapped variables. English is the primary language; Persian — not Arabic — is the second, and every artifact ships both, with a language toggle and a theme toggle always present. All CSS logical properties, no physical directions.
+> Black is a material with layers, never a backdrop. Depth is 1px hairlines and 2–6% luminance steps — no shadows anywhere. One hot orange-red accent, spent at most once per screen, only as solid fill carrying black text or as a thin structural mark meaning "act here". Three type registers: tight grotesque for display and numerals, uppercase tracked monospace for all metadata, one serif appearing exactly once. Density comes from ruled rows with a label gutter, never from card grids. Dark is the canonical theme; light is the same design with swapped variables. English is the default, with additional languages chosen by the user. Interactive artifacts have a theme changer and multilingual artifacts have a language changer. All CSS logical properties, no physical directions.
 
 ---
 
@@ -79,10 +79,10 @@ Build a landing page for a developer tools company. Three sections.
 | 6 | Layout & grid | The label rail, measure, the 4px spacing scale, two breakpoints |
 | 7 | Surface, depth & imagery | No shadows; the four radii; why cards are rationed |
 | 8 | Data expression | A fixed vocabulary — level meters, dot bars, dotted tracks, timelines |
-| 9 | Motion | What is permitted, and why horizontal slide-ins are banned outright |
+| 9 | Motion | Purpose, opportunity finding, implementation, and review |
 | 10 | Medium translations | Web, presentations, posters/print, mobile & touch, and **long-form web documents** |
 | 11 | What would break this | Eleven named failure modes |
-| 12 | Acceptance checklist | Run in all four states; report PASS/FAIL |
+| 12 | Acceptance checklist | Check each selected language and theme; report results |
 
 ---
 
@@ -94,16 +94,9 @@ Build a landing page for a developer tools company. Three sections.
 
 ---
 
-## The four states
+## Language and theme
 
-Every artifact exists in a 2×2 and all four are first-class:
-
-|  | Dark | Light |
-|---|---|---|
-| **English** | default on first load | |
-| **Persian** | | |
-
-A language toggle and a theme toggle are non-negotiable furniture in every medium. §5.5 specifies the topbar component that carries them, down to the CSS.
+The agent asks whether you want English only or multiple languages. English is the default when no answer is available. Interactive work includes a theme changer, with dark and light for each selected language. Static exports have both theme variants.
 
 ---
 
