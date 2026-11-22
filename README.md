@@ -7,7 +7,9 @@ A single-file art direction spec, written to be handed to an AI. Point Claude, C
 
 ## Progressive Learning-Motion Orchestrator (Codex)
 
-The bundled `art-direction` agent skill can route educational HTML/SVG work to specialized animation skills **only when motion improves understanding**. A static explanation is a valid outcome. See [learning motion](skills/art-direction/references/learning-motion.md) and [routing rules](skills/art-direction/references/skill-routing.md).
+The bundled `art-direction` agent skill can route educational HTML/SVG work to specialized animation skills **only when motion improves understanding**. A static explanation is a valid outcome. See [learning motion](skills/art-direction/references/learning-motion.md), [conditional semantic colors](skills/art-direction/references/semantic-colors.md), and [routing rules](skills/art-direction/references/skill-routing.md).
+
+**Color guidance:** Orange is available for meaningful emphasis on up to **15% of visible content elements** per viewport or slide, not limited to one element. For educational work, Reforge-inspired blue, green, amber and violet can distinguish concepts **only when that improves comprehension**. These semantic colors are optional, require consistent mappings and accessible non-color cues, and are not a decorative palette.
 
 **Lazy installation:** When an approved specialist is required but not installed, the skill runs the allowlisted [installer](skills/art-direction/scripts/ensure-skill.mjs). It installs **only the missing skill**, targeting Codex, instead of loading every dependency up front. This requires a Codex environment with network/install permissions and Node.js 22.20+ for the latest skills CLI. Installing a skill does not guarantee host skill-discovery refresh in the current turn; the agent reads its instructions directly. No third-party skill is bundled.
 
@@ -70,7 +72,7 @@ This file removes those decisions. It is written as a specification with pass/fa
 
 The direction in one paragraph:
 
-> Black is a material with layers, never a backdrop. Depth is 1px hairlines and 2–6% luminance steps — no shadows anywhere. One hot orange-red accent, spent at most once per screen, only as solid fill carrying black text or as a thin structural mark meaning "act here". Three type registers: tight grotesque for display and numerals, uppercase tracked monospace for all metadata, one serif appearing exactly once. Density comes from ruled rows with a label gutter, never from card grids. Dark is the canonical theme; light is the same design with swapped variables. English is the default, with additional languages chosen by the user. Interactive artifacts have a theme changer and multilingual artifacts have a language changer. All CSS logical properties, no physical directions.
+> Black is a material with layers, never a backdrop. Depth is 1px hairlines and 2–6% luminance steps — no shadows anywhere. One orange-red accent, used meaningfully on up to 15% of visible content elements. Optional semantic blue, green, amber and violet are permitted only when distinctions between concepts become clearer. Three type registers: tight grotesque for display and numerals, uppercase tracked monospace for all metadata, one serif appearing exactly once. Density comes from ruled rows with a label gutter, never from card grids. Dark is the canonical theme; light is the same design with swapped variables. English is the default, with additional languages chosen by the user. Interactive artifacts have a theme changer and multilingual artifacts have a language changer. All CSS logical properties, no physical directions.
 
 ---
 
@@ -101,7 +103,7 @@ Build a landing page for a developer tools company. Three sections.
 | 0 | How to use this file | Instructions for humans and for AI; the compressed preamble |
 | 1 | The invariants | Ten rules that hold in every medium, size, theme and script |
 | 2 | The concept | The one-sentence thesis |
-| 3 | Color system | Dark and light tokens; the four places the accent is permitted and the many where it is not |
+| 3 | Color system | Dark/light tokens; orange up to 15% of meaningful elements; optional secondary hues gated by learning value |
 | 4 | Typography | Four faces; ten registers defined as multipliers of a per-medium base |
 | 5 | Language & theme | English/Persian and dark/light; Persian-specific typesetting; bidi; **the topbar component** |
 | 6 | Layout & grid | The label rail, measure, the 4px spacing scale, two breakpoints |
