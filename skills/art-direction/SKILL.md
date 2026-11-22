@@ -11,7 +11,7 @@ Read `art-direction.md` at the repository root before designing or reviewing. It
 
 1. Determine the medium and apply the relevant §10 guidance. Ask about languages only if not established; default to English if unanswered. Use the Persian-specific rules when needed.
 2. Apply the existing theme-switcher, responsive layout, accessibility and print requirements.
-3. For ordinary interfaces, use the purposeful-motion gate in §9. Do not automatically load educational or third-party skills.
+3. For ordinary interfaces, use the purposeful-motion gate in §9. Do not automatically load educational or third-party skills. The §3 orange ceiling is 15% of meaningful visible elements, not one accent per screen. Add optional semantic secondary colors only when their distinct meanings improve comprehension; load `references/semantic-colors.md` **only if** a multi-category diagram, chart, classification, or learning module might need them.
 4. **For explanation, tutoring, simulation, interactive learning or conceptual visualizations:** load `references/learning-motion.md` and `references/skill-routing.md`. Apply the **Learning Value Gate before any dependency installation or animation implementation**.
 5. If the gate fails, build a static or interactive-static representation. This is a successful outcome.
 6. If the gate passes, identify the smallest set of specialist skills that adds value. Before using one, check whether its exact skill is installed. If missing, run:
