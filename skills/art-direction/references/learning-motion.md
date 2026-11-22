@@ -38,6 +38,10 @@ Update semantic state and text values immediately; use animation only to connect
 | Progressive explanation | Learners need staged causal exposition | Hidden steps prevent scanning or reading |
 | Mechanical/isometric metaphor | Physical construction concretely explains a mechanism | The metaphor distorts an abstract concept |
 
+## Color and comprehension
+
+Default to grayscale and the purposeful orange accent, which may mark up to **15% of meaningful visible elements**, not just one element. Introduce optional Reforge-inspired semantic blue/green/amber/violet only when distinct concepts, stages, paths, or categories become materially easier to compare. Read `semantic-colors.md` only if that decision arises. Keep stable labels and shapes for color-independent comprehension; check dark/light contrast. Color alone does not justify a motion candidate.
+
 ## Technical model and visual truth
 
 - Use one authoritative data/model state for geometry, labels, output values and controls.
