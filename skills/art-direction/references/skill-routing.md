@@ -27,7 +27,7 @@ For a single artifact, usually use no specialist or one specialist. Do not run a
 
 ## Anatomy-specific precedence
 
-When selected, Anatomy is authoritative for the **inner illustration**: its isometric geometry, precision, camera, depth, dimensional shading, lighting, layout, mechanical detail, and animation craft remain intact. The **only** allowed adaptation of its visual style is palette recoloring. Color changes must preserve the rendering's multiple-tone depth relationships and accessibility. Art Direction applies to the surrounding page and controls. Do not override Anatomy with the main guide's flat-illustration, accent scarcity, no-shadow/no-gradient or card limits inside the figure. Prefer Anatomy SVG/HTML output for HTML/SVG tasks; do not bring in WebGL/3D unless separately warranted by the output requirements.
+When selected, Anatomy is authoritative for the **inner illustration**: its isometric geometry, precision, camera, depth, dimensional shading, lighting, layout, mechanical detail, and animation craft remain intact. The **only** allowed adaptation of its visual style is palette recoloring. Color changes must preserve the rendering's multiple-tone depth relationships and accessibility. Art Direction applies to the surrounding page and controls. Do not override Anatomy with the main guide's flat-illustration, 15% outer-page orange ceiling, optional category palette, no-shadow/no-gradient or card limits inside the figure. Color recoloring is optional; never recolor merely to force brand consistency. Prefer Anatomy SVG/HTML output for HTML/SVG tasks; do not bring in WebGL/3D unless separately warranted by the output requirements.
 
 ## Auto installation
 
