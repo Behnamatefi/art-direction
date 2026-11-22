@@ -119,6 +119,8 @@ The Reforge Product Strategy learning document uses a reusable **reference palet
 | `--semantic-amber` | `#C98500` | `#EDA100` | Scaling |
 | `--semantic-violet` | `#9085E9` | `#4A3AA7` | Expansion |
 
+For educational grouping, the Reforge example also uses low-opacity role washes (dark/light, respectively): blue `rgba(57,135,229,.14)` / `rgba(42,120,214,.10)`; green `rgba(25,158,112,.14)` / `rgba(27,175,122,.12)`; amber `rgba(201,133,0,.16)` / `rgba(237,161,0,.14)`; violet `rgba(144,133,233,.16)` / `rgba(74,58,167,.10)`. **Use these optional washes only on bounded category regions when the resulting grouping materially improves comprehension**, never as generic card or page decoration. Preserve readable neutral text and visible boundaries over any wash.
+
 Add only the roles actually required as CSS custom properties in the dark and light theme token blocks. The Reforge category names are examples, **not universal meanings**. Define a stable category-to-color mapping for each new artifact and keep it consistent across legends, diagrams, scenarios, themes and languages.
 
 **Secondary Color Gate:** Before using any hue, name the precise distinction it clarifies, justify why non-color encoding alone is less clear, and specify what the hue always represents. If no explanation is possible, leave it neutral. Use semantic hues sparingly on conceptual marks, plotted series, short labels, connections and meaningful learning states, **not** as generic backgrounds, decorative typography or rainbow UI. The **15% ceiling applies to orange alone**, not these conditional secondary colors. Secondary hues have no fixed percentage quota, but every use must pass the gate.
