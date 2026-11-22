@@ -14,7 +14,7 @@ For a proposal or report with several chapters, use the long-form web document p
 
 **Compressed preamble** (paste this above any prompt when the full file is too long):
 
-> Black is a material with layers, never a backdrop. Depth is 1px hairlines and 2–6% luminance steps — no shadows anywhere. One hot orange-red accent, spent at most once per screen, only as solid fill carrying black text or as a thin structural mark meaning "act here". Three type registers: tight grotesque for display and numerals, uppercase tracked monospace for all metadata, one serif appearing exactly once. Density comes from ruled rows with a label gutter, never from card grids. **Dark is the canonical theme; light is the same design with swapped variables.** **English is the default. Ask whether additional languages are wanted. Every interactive artifact has a theme changer; add a language changer when multiple languages are requested.** All CSS logical properties, no physical directions. English and Persian achieve the same effects by different native means, never by imitation.
+> Black is a material with layers, never a backdrop. Depth is 1px hairlines and 2–6% luminance steps — no shadows anywhere. One orange-red accent, used where meaningfully helpful on up to 15% of visible content elements. Optional blue, green, amber and violet semantic colors distinguish educational concepts only when labels and grayscale alone are insufficient. Three type registers: tight grotesque for display and numerals, uppercase tracked monospace for all metadata, one serif appearing exactly once. Density comes from ruled rows with a label gutter, never from card grids. **Dark is the canonical theme; light is the same design with swapped variables.** **English is the default. Ask whether additional languages are wanted. Every interactive artifact has a theme changer; add a language changer when multiple languages are requested.** All CSS logical properties, no physical directions. English and Persian achieve the same effects by different native means, never by imitation.
 
 ---
 
@@ -23,7 +23,7 @@ For a proposal or report with several chapters, use the long-form web document p
 These hold in every medium, at every size, in both themes, in both scripts. Everything else in this document is an implementation of them.
 
 1. **Black is a material with layers, never a backdrop.** Surfaces separate by 2–6% luminance steps and 1px hairlines. Nothing casts a shadow. Not once.
-2. **The accent is rationed to near-scarcity.** It behaves in exactly two ways: (a) a solid fill carrying black text, or (b) a thin structural mark meaning *now / selected / this one*. Target: the accent occupies ~2% of pixels and does all the work. Never soft, never gradient, never glow, never a tint across a whole surface.
+2. **Orange communicates priority, not scarcity for its own sake.** Up to **15% of meaningful visible elements** can use orange, never as a quota or as a percentage of pixels. Use it for salient actions, selection, critical values and learning-critical states. Optional secondary semantic colors may distinguish concepts only when doing so materially improves comprehension. Keep the rest neutral; avoid decorative color, glows and saturated backgrounds.
 3. **Type is zoned into three registers, hard.** A tight grotesque for display and numerals (near-zero to negative tracking); an uppercase monospace with wide tracking for *all* metadata; a single serif that appears exactly once per artifact. Numerals get the largest optical treatment — tabular, slashed zero.
 4. **Density comes from ruled rows with a label gutter, not from boxes.** Category label in the rail, name in the content column, hairline under every row, micro-action flush to the end edge.
 5. **Dark is canonical; light is the same design with swapped variables.** Design in dark, verify in light. Off-white, not white. Warm paper gray, not `#FFF`.
@@ -37,7 +37,7 @@ These hold in every medium, at every size, in both themes, in both scripts. Ever
 
 ## 2. THE CONCEPT
 
-A black document that reads like paper and is structured like an instrument: everything is ruled, labelled and quiet, and the one orange in the system fires only where a human has to act.
+A black document that reads like paper and is structured like an instrument: everything is ruled, labelled and quiet. Orange marks consequential actions, selected states, important information and teaching-critical relationships without exceeding the 15% element budget. Secondary semantic colors are optional tools for genuine conceptual differentiation, not decoration.
 
 The register is *executive-technical*. It should feel like a well-made measuring device or a private research memo — authoritative, unhurried, unbranded. It should never feel like a dashboard, a startup landing page, a slide template, or a conference poster.
 
@@ -93,30 +93,43 @@ Every value is a custom property. **No literal color may appear anywhere except 
 
 ### The accent law
 
-**PERMITTED — four uses across media, plus the scenario explorer defined in §10.5:**
+**BUDGET: at most 15% of meaningful visible elements may use orange** in any viewport of a scrolling document, slide or poster. This is a maximum, not a target, and is an element count rather than pixel-area coverage. More than one orange element is allowed when several meaningful priorities or learning states benefit. There is no mandatory minimum.
 
-1. **The single most consequential number.** One solid block, `--accent` fill, `--accent-ink` digits. One block per artifact, never two.
-2. **Highest-severity structural edge.** `border-inline-start: 3px solid var(--accent)` on the row, plus the severity word in `--accent-text`, plus the top segment of the level meter filled. Highest tier only.
-3. **The overdue / imminent token.** One solid pill, `--accent` fill, `--accent-ink` uppercase mono.
-4. **The "now" marker.** A 1px line with a 5px solid square at its head, on a timeline or scale.
+**Count consistently:** A meaningful element is a perceptually distinct content unit such as an action, label, metric, status, diagram concept, plotted data series or selected scenario. A cohesive component communicating one idea counts once, even if composed of SVG paths, text and a border. Ignore structural wrappers, invisible elements and repeated decorative geometry. Do not split neutral content into artificial elements to inflate the denominator. For each visible composition, enforce `orange units / meaningful units ≤ 0.15`; when strict integer counts are needed, use `floor(0.15 × meaningful units)`. Check responsive and interactive states independently. Even under the limit, avoid huge orange-filled regions that dominate the composition.
 
-**FORBIDDEN — non-negotiable:**
+**Orange is permitted when it conveys:**
 
-- Any heading, section title, body sentence, link, hover state, or focus ring. **Focus ring = `2px solid var(--text-primary)`, `outline-offset: 2px`.** Always. Everywhere.
-- Medium and low severity, secondary states, "info", "success". Grayscale only.
-- Card backgrounds, section backgrounds, full-bleed panels, headers, footers, sidebars.
-- Charts, bars, dots, progress fills, meters, sparklines, legends — all grayscale. A scenario explorer may use the single accent in the long-form profile under the conditions in §10.5.
-- Gradients, glows, accent `box-shadow`, animation of accent colors, or accent styling on hovered controls.
-- Logos, decorative shapes, dividers, bullet glyphs, list markers.
-- Persian running text. `--accent-text` is permitted only on Latin uppercase mono ≥11px, or Vazirmatn ≥12px at weight 700.
+1. **Action and selection:** consequential primary action, selected tab, active scenario or current step. Use solid `--accent` with `--accent-ink` when a filled control is appropriate, or a restrained mark, edge or label.
+2. **Decision-critical information:** important number, change, comparison result, urgent deadline or high-severity state. Multiple consequential units may be orange when the 15% budget permits them.
+3. **Explanatory focus:** the active or changing part of an SVG diagram, user-controlled variable, key causal connection or selected data series when this helps the learner track the explanation.
+4. **Functional orientation:** the current location in a learning flow, timeline or navigation when neutral styles would obscure it.
 
-**BUDGET.** At most **one accent element visible at a time**: per viewport in a scrolling artifact (roughly one per 900px of scroll), per slide in a deck, per poster. Sole exception: a repeating highest-severity edge bar within one section.
+**Keep neutral unless explicitly meaningful:** ordinary body text, non-selected controls, incidental metadata, decorative icons, separators, backgrounds, broad panels, generic cards, repeated statuses and unrelated chart series. Do not make every header, link, KPI, legend item or hover state orange. Focus indicators remain `2px solid var(--text-primary)` with `outline-offset: 2px`, independent of selection. No accent gradients, glows, box shadows, flashing or hue-cycling animation. `--accent-wash` stays reserved for destructive confirmation and print-safe highlighting.
 
-If a section feels flat without color, the fix is a rule or a rail label. Never a second orange.
+### Conditional semantic secondary colors
+
+The default remains grayscale plus orange. **Secondary hues are optional and must materially improve learning**, not merely make an artifact more colorful. Introduce them only when they clarify distinct concepts, interacting systems, category recognition, multi-series comparisons or causal paths, and shape/labels/grayscale alone would communicate less clearly.
+
+The Reforge Product Strategy learning document uses a reusable **reference palette** with four stable category mappings:
+
+| Semantic token | Dark | Light | Reforge example |
+|---|---|---|---|
+| `--semantic-blue` | `#3987E5` | `#2A78D6` | Feature |
+| `--semantic-green` | `#199E70` | `#1BAF7A` | Growth |
+| `--semantic-amber` | `#C98500` | `#EDA100` | Scaling |
+| `--semantic-violet` | `#9085E9` | `#4A3AA7` | Expansion |
+
+Add only the roles actually required as CSS custom properties in the dark and light theme token blocks. The Reforge category names are examples, **not universal meanings**. Define a stable category-to-color mapping for each new artifact and keep it consistent across legends, diagrams, scenarios, themes and languages.
+
+**Secondary Color Gate:** Before using any hue, name the precise distinction it clarifies, justify why non-color encoding alone is less clear, and specify what the hue always represents. If no explanation is possible, leave it neutral. Use semantic hues sparingly on conceptual marks, plotted series, short labels, connections and meaningful learning states, **not** as generic backgrounds, decorative typography or rainbow UI. The **15% ceiling applies to orange alone**, not these conditional secondary colors. Secondary hues have no fixed percentage quota, but every use must pass the gate.
+
+**Accessible equivalence:** Color is never the only way to distinguish categories. Also use explicit labels, distinct shapes, stroke styles or patterns; validate grayscale and print output. Verify contrast in the actual context (normally 4.5:1 for small text and 3:1 for essential graphics). These reference hues do not automatically meet text contrast in both themes, so adapt their application or add neutral-color labeling when necessary.
+
+**Anatomy exception:** The Anatomy skill's original visual construction, isometric geometry, materials, lighting, shading, composition and motion are preserved. **Only palette colors may be adapted**, and only when justified. Art Direction's color rules apply to the surrounding page; neither the orange budget nor this semantic palette mandates recoloring the internal Anatomy figure.
 
 ### Grayscale is the working palette
 
-Every chart, every state, every hierarchy is built from `--text-primary` → `--text-secondary` → `--text-tertiary` → `--text-quiet` → `--line-strong` → `--line-hairline`. Six steps is more than enough. If a chart needs a seventh series, the chart is wrong.
+Grayscale is the default hierarchy: `--text-primary` → `--text-secondary` → `--text-tertiary` → `--text-quiet` → `--line-strong` → `--line-hairline`. Orange identifies important or active units under its 15% limit. When teaching-critical distinctions cannot be clearly encoded using grayscale and labels alone, introduce only the necessary semantic secondary hues after the Secondary Color Gate.
 
 ---
 
