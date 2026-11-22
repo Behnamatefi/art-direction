@@ -22,14 +22,14 @@ If these answers are weak, **do not introduce the hue**. Do not generate rainbow
 
 ## Source palette
 
-Extracted from the supplied \`reforge-product-strategy-roadmap-v5.html\`, whose categories are Feature, Growth, Scaling and Expansion.
+Extracted from the supplied `reforge-product-strategy-roadmap-v5.html`, whose categories are Feature, Growth, Scaling and Expansion.
 
 | Role | Dark theme | Light theme | Reforge meaning |
 |---|---|---|---|
-| \`--semantic-blue\` | \`#3987E5\` | \`#2A78D6\` | Feature |
-| \`--semantic-green\` | \`#199E70\` | \`#1BAF7A\` | Growth |
-| \`--semantic-amber\` | \`#C98500\` | \`#EDA100\` | Scaling |
-| \`--semantic-violet\` | \`#9085E9\` | \`#4A3AA7\` | Expansion |
+| `--semantic-blue` | `#3987E5` | `#2A78D6` | Feature |
+| `--semantic-green` | `#199E70` | `#1BAF7A` | Growth |
+| `--semantic-amber` | `#C98500` | `#EDA100` | Scaling |
+| `--semantic-violet` | `#9085E9` | `#4A3AA7` | Expansion |
 
 **The role meanings are not universal.** Reuse this palette as a set of possible distinct categories, not as a rule that blue always means "Feature" in unrelated projects. Add only the CSS variables required for a particular artifact inside its theme token blocks. Preserve consistent category mappings from first to last state.
 
@@ -37,7 +37,7 @@ Extracted from the supplied \`reforge-product-strategy-roadmap-v5.html\`, whose 
 
 On the original base pages, approximate WCAG relative contrast ratios of these stroke colors are:
 
-| Role | Dark on \`#0B0B0C\` | Light on \`#F3F2F0\` |
+| Role | Dark on `#0B0B0C` | Light on `#F3F2F0` |
 |---|---:|---:|
 | Blue | 5.41:1 | 3.95:1 |
 | Green | 5.78:1 | 2.52:1 |
