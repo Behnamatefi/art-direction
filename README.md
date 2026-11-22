@@ -4,6 +4,34 @@
 
 A single-file art direction spec, written to be handed to an AI. Point Claude, ChatGPT, Cursor or v0 at [`art-direction.md`](art-direction.md) and ask for a website, a deck, a poster or a report — the guide supplies the visual direction, theme behavior, and motion guidance.
 
+
+## Progressive Learning-Motion Orchestrator (Codex)
+
+The bundled `art-direction` agent skill can route educational HTML/SVG work to specialized animation skills **only when motion improves understanding**. A static explanation is a valid outcome. See [learning motion](skills/art-direction/references/learning-motion.md) and [routing rules](skills/art-direction/references/skill-routing.md).
+
+**Lazy installation:** When an approved specialist is required but not installed, the skill runs the allowlisted [installer](skills/art-direction/scripts/ensure-skill.mjs). It installs **only the missing skill**, targeting Codex, instead of loading every dependency up front. This requires a Codex environment with network/install permissions and Node.js 22.20+ for the latest skills CLI. Installing a skill does not guarantee host skill-discovery refresh in the current turn; the agent reads its instructions directly. No third-party skill is bundled.
+
+```sh
+# Inspect a planned installation without changing anything
+node skills/art-direction/scripts/ensure-skill.mjs animate --dry-run
+
+# Install one missing approved specialist globally for Codex
+node skills/art-direction/scripts/ensure-skill.mjs animate
+
+# Optional project-local installation
+node skills/art-direction/scripts/ensure-skill.mjs remove-animations --scope project
+
+# Run installer tests
+node --test skills/art-direction/scripts/ensure-skill.test.mjs
+```
+
+**Specialists:** `anatomy`, `animate`, `find-animation-opportunities`, `animation-performance`, `improve-animations`, `review-animations`, and `remove-animations`.
+
+**Anatomy exception:** The original Anatomy art style is preserved. If Anatomy is chosen, only its palette colors may change; do not restyle its shape, isometric geometry, lighting, shading, depth, composition or motion. Art Direction applies to the surrounding page, not the Anatomy figure.
+
+**Permissions and limits:** The auto-installer is an allowlisted third-party downloader, not a network bypass. Installation may fail in restricted/sandboxed environments, and the fallback is the core Art Direction guide. The upstream `review-animations` skill currently has `disable-model-invocation: true`, which the orchestrator honors.
+
+
 ## Quick start
 
 Copy this prompt into your agent to set up the art direction in your project.
