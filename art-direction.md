@@ -710,11 +710,11 @@ Proposals and reports with several independently readable sections can use this 
 
 #### Palette and opening
 
-The following token overrides are local to this profile. Other roles inherit from §3.
+The following token overrides are local to this profile. Other roles inherit from §3. **The light-mode page background uses `#F3F2F0`, matching the warm paper background of the reference Reforge educational HTML.** Do not reintroduce the previous `#F2F2F0` long-form override. The canonical light-mode `--surface-page` in §3 already matches this reference.
 
 | Token | Dark | Light |
 |---|---|---|
-| `--surface-page` | `#0B0B0C` | `#F2F2F0` |
+| `--surface-page` | `#0B0B0C` | `#F3F2F0` |
 | `--surface-raised` | `#141416` | `#FFFFFF` |
 | `--line-hairline` | `#303034` | `#CDCDCA` |
 | `--line-strong` | `#77777C` | `#80807B` |
