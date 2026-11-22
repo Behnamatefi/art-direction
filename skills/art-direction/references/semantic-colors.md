@@ -31,6 +31,17 @@ Extracted from the supplied `reforge-product-strategy-roadmap-v5.html`, whose ca
 | `--semantic-amber` | `#C98500` | `#EDA100` | Scaling |
 | `--semantic-violet` | `#9085E9` | `#4A3AA7` | Expansion |
 
+**Optional semantic washes from Reforge** (use only for genuinely meaningful grouping, never to decorate containers):
+
+| Role | Dark wash | Light wash |
+|---|---|---|
+| Blue | `rgba(57,135,229,.14)` | `rgba(42,120,214,.10)` |
+| Green | `rgba(25,158,112,.14)` | `rgba(27,175,122,.12)` |
+| Amber | `rgba(201,133,0,.16)` | `rgba(237,161,0,.14)` |
+| Violet | `rgba(144,133,233,.16)` | `rgba(74,58,167,.10)` |
+
+Keep text neutral and high-contrast. A tinted group requires labels and structural grouping even when color is unavailable.
+
 **The role meanings are not universal.** Reuse this palette as a set of possible distinct categories, not as a rule that blue always means "Feature" in unrelated projects. Add only the CSS variables required for a particular artifact inside its theme token blocks. Preserve consistent category mappings from first to last state.
 
 ## Contrast cautions
