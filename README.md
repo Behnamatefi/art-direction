@@ -11,6 +11,8 @@ The bundled `art-direction` agent skill can route educational HTML/SVG work to s
 
 **Color guidance:** Orange is available for meaningful emphasis on up to **15% of visible content elements** per viewport or slide, not limited to one element. For educational work, Reforge-inspired blue, green, amber and violet can distinguish concepts **only when that improves comprehension**. These semantic colors are optional, require consistent mappings and accessible non-color cues, and are not a decorative palette.
 
+**Light-mode surface:** The warm Reforge page background is `#F3F2F0`. It is now consistent between the core light theme and the long-form educational-document profile. This is the page background, not an instruction to change all light surfaces.
+
 **Lazy installation:** When an approved specialist is required but not installed, the skill runs the allowlisted [installer](skills/art-direction/scripts/ensure-skill.mjs). It installs **only the missing skill**, targeting Codex, instead of loading every dependency up front. This requires a Codex environment with network/install permissions and Node.js 22.20+ for the latest skills CLI. Installing a skill does not guarantee host skill-discovery refresh in the current turn; the agent reads its instructions directly. No third-party skill is bundled.
 
 ```sh
