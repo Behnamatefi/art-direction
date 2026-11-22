@@ -142,7 +142,7 @@ function poster(x, y, w, h, t){
   ['RULED','LABEL','QUIET'].forEach((s,i)=>
     txt(s, cx0, y+pad+ds*(1.0+i*0.92), {font:'ITight6', size:ds, color:t.t1, track:-ds*0.035}));
 
-  // single accent zone
+  // example of a single accent zone; additional meaningful accents are permitted up to 15% of visible content units
   const py = y+pad+ds*3.30, pw = cw*0.72, ph = w*0.088;
   rrect(cx0, py, pw, ph, ph/2, t.accent);
   txt('NOW', cx0+pw/2, py+ph*0.72, {font:'Plex7', size:w*0.045, color:t.ink, track:w*0.004, align:'center'});
@@ -154,7 +154,7 @@ function poster(x, y, w, h, t){
 
   let ry = y+h-pad-w*0.245;
   hair(cx0, ry, cw, t.hair);
-  ['Hairlines','No shadow','One accent'].forEach(s=>{
+  ['Hairlines','No shadow','Orange ≤15%'].forEach(s=>{
     ry += w*0.082;
     txt(s, cx0, ry-4, {font:'ITight', size:w*0.052, color:t.t2});
     hair(cx0, ry, cw, t.hair);
@@ -243,7 +243,7 @@ txt('۱۴۰۵/۰۵/۲۳', S-M-108, y+15, {font:'Vazir', size:14, color:t.t3, rtl
 
 // ---- laws footer ----
 y += 46; hair(M, y, S-M*2, t.hair); y += 30;
-txt('No shadows  ·  1px hairlines + 2–6% luminance steps  ·  one accent per screen  ·  ruled rows, never card grids  ·  logical properties only',
+txt('No shadows  ·  1px hairlines + 2–6% luminance steps  ·  purposeful orange ≤15% of elements  ·  ruled rows, never card grids  ·  logical properties only',
     S/2, y, {font:'Plex', size:12.5, color:t.t3, track:0.85, align:'center', upper:true});
 
 fs.writeFileSync('/tmp/build/art-direction-specimen.jpg', cv.encodeSync('jpeg', 94));
