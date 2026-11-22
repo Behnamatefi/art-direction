@@ -463,13 +463,13 @@ Images are rare and always earned. When present:
 
 ### Icons
 
-Rationed like the accent. Prefer type and rules. When unavoidable: 1.25px stroke, `currentColor`, sizes 16 / 20 / 24 only, never filled, never accent-colored, never decorative. An icon that could be a word should be a word.
+Prefer type and rules. When unavoidable: 1.25px stroke, `currentColor`, sizes 16 / 20 / 24 only, never decorative. An icon may use orange or a semantic hue only when it itself conveys a meaningful selected, urgent or concept-coded state and satisfies §3. An icon that could be a word should be a word.
 
 ### Interaction
 
 - **Hover:** row background steps to `--surface-inset` over 120ms. No transform, no border change, no color change, no shadow.
 - **Focus:** `2px solid var(--text-primary)`, `outline-offset: 2px`. Never accent. Never a glow.
-- **Active/selected:** a 3px `border-inline-start` in `--text-primary` — or `--accent`, if and only if this is the artifact's one accent spend.
+- **Active/selected:** a 3px `border-inline-start` in `--text-primary`, or `--accent` if it helps distinguish selection and remains within the 15% visible-element budget.
 - **Disabled:** `--text-quiet` and nothing else. No opacity tricks.
 
 ---
@@ -484,15 +484,15 @@ A fixed vocabulary of devices. Use these; do not invent new ones.
 
 **DATES.** Always tabular. `2026-08-14` in mono for Latin blocks; ‏۱۴۰۵/۰۵/۲۳‏ in Vazirmatn for Persian blocks. Followed by a relative token in `--text-tertiary`.
 
-**TIMELINES / DEADLINES ARE NOT A LIST OF ROWS.** One hairline running the width of the content column; dates as 1px tick marks above it; labels below; "now" as a 1px accent vertical with a 5px accent square at its head. Overdue items sit before the marker and carry the artifact's one solid accent pill.
+**TIMELINES / DEADLINES ARE NOT A LIST OF ROWS.** One hairline running the width of the content column; dates as 1px tick marks above it; labels below; "now" as a 1px accent vertical with a 5px accent square at its head. Overdue items sit before the marker and may carry an accent pill where meaningful and within the 15% budget. Educational timelines may also apply stable semantic category colors when they pass the §3 gate.
 
-**PROGRESS / SHARE.** A 2px rule under the title: the filled portion in `--text-secondary`, the remainder as `border-bottom: 2px dotted var(--text-quiet)`. Dotted/dashed tracks are the system's language for *remaining / elapsed*. Never a rounded progress bar, never accent-filled.
+**PROGRESS / SHARE.** A 2px rule under the title: the filled portion in `--text-secondary`, the remainder as `border-bottom: 2px dotted var(--text-quiet)`. Dotted/dashed tracks are the system's language for *remaining / elapsed*. Never a rounded progress bar. A decision-critical progress state may use orange within the 15% budget; routine progress stays neutral.
 
 **MAGNITUDE.** A dot bar — up to 12 solid 3px squares at 3px pitch in `--text-secondary`, overflow as `+n` in mono. Small solid squares are the system's data atoms.
 
 **BINARY STATUS.** A 14px square, `1px solid var(--line-strong)`, 3px radius. Done = filled `--text-primary` with a `--surface-page` checkmark. **Never accent — completion is not urgency.**
 
-**CHARTS.** Grayscale, hairline axes, no gridlines except a single baseline rule, no legends where direct labels will do, tabular mono for all values, no fills except `--text-secondary` and `--surface-inset`, no rounded caps, no animation. A chart is a ruled table that happens to have geometry. The interactive scenario explorer in §10.5 defines when its active marks may change color or interpolate to a new value.
+**CHARTS.** Grayscale by default, hairline axes, no grids except a baseline, direct labels where practical, tabular mono figures and restrained geometry. A chart is a ruled table that happens to have geometry. Orange can identify the active/critical series within §3's budget. Conditional secondary hues can distinguish educationally meaningful categories only after the Secondary Color Gate; retain labels or patterns for non-color comprehension. Functional data stays static; §9 permits explicitly educational transitions when truthful.
 
 **THE CALM SECTION.** At least one section must have no device at all beyond the rail: index, title, one-line rationale in `--text-secondary`. Build it in deliberately. It is what makes the instrumented sections legible.
 
@@ -529,7 +529,7 @@ For tutoring, conceptual explainers, simulations and interactive learning, use `
 
 **Prefer interactive learning when educationally justified.** Learners should be able to change relevant inputs, inspect outcomes, compare scenarios or step through a process, with interruption, reversal and reset where valuable. Do not require play/pause or sliders when they add nothing. Maintain a single authoritative model for controls, geometry, numbers and labels. Use semantic HTML and accessible SVG; preserve static/print and reduced-motion alternatives.
 
-**Chart exception:** The §8 default ban on chart animation remains in force for dashboards, reports and other functional data. Educational charts may interpolate between explicitly user-selected states only when that transition genuinely teaches a relationship, does not fabricate observations, maintains stable axes and units, and makes exact values immediately available. Animating every mount, refresh or readout remains forbidden.
+**Chart exception:** The §8 ban on gratuitous chart animation remains in force for dashboards, reports and functional data. Educational charts may interpolate between explicitly user-selected states only when a transition genuinely teaches a relationship, does not fabricate observations, maintains stable axes and units, and makes exact values immediately available. These may use orange to focus attention or carefully selected semantic category colors after §3's Secondary Color Gate. Animating every mount, refresh or readout remains forbidden.
 
 **Optional specialist skills:** The Art Direction skill acts as a progressive orchestrator in Codex. It routes only approved, necessary tasks to the specific installed skills `find-animation-opportunities`, `animate`, `anatomy`, `animation-performance`, `improve-animations`, `remove-animations`, and `review-animations`. Missing allowlisted skills may be installed on demand by `skills/art-direction/scripts/ensure-skill.mjs`, subject to Codex sandbox and network permission. Never silently install all skills or claim automatic invocation that the host prohibits. `review-animations` currently disables model invocation; respect this restriction.
 
@@ -540,13 +540,13 @@ For tutoring, conceptual explainers, simulations and interactive learning, use `
 
 ## 10. MEDIUM TRANSLATIONS
 
-The system is invariant; only base size, canvas and accent budget change. **Every interactive medium ships a theme changer** (§5.5), defaults to **English + Dark**, and is verified in both themes for each selected language. Static exports include both theme variants.
+The system is invariant; base size, canvas and purposeful color application vary by medium. The 15% ceiling for orange and the optional semantic-color gate apply across all media. **Every interactive medium ships a theme changer** (§5.5), defaults to **English + Dark**, and is verified in both themes for each selected language. Static exports include both theme variants.
 
 ### 10.1 WEB / HTML
 
 **Base (BODY):** 15px for documents and reports; 17px for marketing and landing pages.
 **Canvas:** 948px max; inline padding 32 → 24 → 20px; breakpoints at 900px and 640px (§6, §10.4).
-**Accent budget:** one element per viewport, ~one per 900px of scroll.
+**Accent budget:** up to 15% of meaningful visible elements per viewport. Semantic secondary hues are opt-in under §3.
 
 - The full §6 rail applies as written.
 - Section-closing hairlines bleed to page edge minus 32px.
@@ -571,14 +571,14 @@ Print defaults to the light palette and hides the controls. Provide dark and lig
 **Canvas:** 1920×1080 (16:9). All geometry in px at that canvas, scaled as a unit.
 **Base (BODY):** 24px. → DISPLAY 70px, NUMERAL 58px, LEAD 32px, ITEM 27px, SECTION 21px, DATA 20px, META 17.5px, MICRO 16px. DISPLAY-XL 96–192px for statement slides.
 **Margins:** 96px all sides. Content never enters the margin. Bottom 128px reserved for the rail line and slide index.
-**Accent budget:** at most one accent mark per slide, and **at least two-thirds of slides carry none.** A deck where every slide has orange is a failed deck.
+**Accent budget:** up to 15% of meaningful visible elements per slide, with no minimum and no mandated quota of orange-free slides. Use color where it improves clarity; otherwise keep it neutral.
 
 - **The rail becomes a persistent footer rule:** a hairline across the full canvas 128px from the bottom, with section index, section title in META, and slide number in DATA below it at the inline-start, and **the theme control and any language control at the inline-end**. It is the deck's spine — identical on every slide, never animated. In RTL the whole spine mirrors for free.
 - **For multilingual decks, use one document with parallel language payloads.** Slide count, slide order and slide archetypes are identical in both; only the payload changes. If a slide only works in English, it is not a slide.
 - **Slide archetypes, and only these:**
   1. **Statement** — DISPLAY-XL, one line, `--text-primary`, on `--surface-page`. Nothing else on the slide. No subtitle.
   2. **Lead** — the serif passage. Occurs exactly once in the deck, usually slide 2.
-  3. **Metric strip** — 2–4 NUMERAL cells separated by vertical hairlines, META labels above, a rule above the numerals. This is where the deck's one solid accent block lives, if anywhere.
+  3. **Metric strip** — 2–4 NUMERAL cells separated by vertical hairlines, META labels above, a rule above the numerals. A consequential metric can use an orange block when it helps reading and stays within the 15% per-slide limit.
   4. **Ruled list** — up to 7 rows, hairline separators, rail label at the start edge of each row. Never bullet glyphs; the hairline is the bullet.
   5. **Two-column** — 180px rail + content, exactly as §6, scaled.
   6. **Full-bleed image** — radius 0, no caption overlay; caption sits below in META on `--surface-page`.
@@ -593,7 +593,7 @@ Print defaults to the light palette and hides the controls. Provide dark and lig
 **Base (BODY):** long edge ÷ 70. (A2 ≈ 24pt, A1 ≈ 34pt, A0 ≈ 48pt.)
 **DISPLAY-XL:** long edge ÷ 14 to ÷ 9.
 **Margins:** long edge ÷ 20, equal on all sides.
-**Accent budget:** **exactly one accent zone per poster.** The poster has a single focal and the orange marks it.
+**Accent budget:** up to 15% of meaningful visible elements across the poster, focused on the most important information; zero orange is valid.
 
 **Source, states and deliverables.** A poster is authored as **one HTML file with the theme changer and, when multilingual, the language changer live** — that is the source of truth, the review artifact, and the screen deliverable. Print is an export from it, not a separate build. The print deliverable set is **PDFs for each selected language in dark and light**, with the toggles hidden. Which one goes to the printer is a production decision (stock, ink coverage, budget), not an art-direction one.
 
@@ -690,7 +690,7 @@ A 16:9 deck does not reflow. It scales.
 A poster fit to a 390px screen is unreadable — DISPLAY-XL at long-edge ÷ 12 becomes 32px and BODY becomes 5px.
 
 - **Never ship a poster to mobile as a fit-to-width image or PDF embed.**
-- The HTML source (§10.3) renders instead as a **stacked reading view**: the full-height metadata column becomes an inline META line, sections stack in reading order, DISPLAY-XL falls to the mobile `--display-xl` clamp, and the single accent zone stays where it was.
+- The HTML source (§10.3) renders instead as a **stacked reading view**: the full-height metadata column becomes an inline META line, sections stack in reading order, DISPLAY-XL falls to the mobile `--display-xl` clamp, and the purposeful color hierarchy remains legible with the 15% orange ceiling.
 - Offer the print PDF as an explicit download, not as the mobile view.
 
 #### Motion on mobile
@@ -725,7 +725,7 @@ The following token overrides are local to this profile. Other roles inherit fro
 | `--texture-dot` | `rgba(150,150,150,.12)` | `rgba(105,105,100,.15)` |
 
 - Place the eyebrow and date above a statement and a short lead. When there is a primary decision number, pair it with its unit and a short qualification in one square-cornered callout. It sits beside the lead on wide screens and follows it in the reading order on compact screens. Put two to four supporting facts in the ruled summary strip below.
-- Spend the accent once across the document. A solid number callout takes priority when one exists. If the scenario explorer is the focal point, use `--scenario-mark` for its active bars and square endpoints in that single chart. Keep chapter indicators, controls, reference ticks, and the other data devices neutral. The active bar, square endpoint, and selection label must still identify the selected scenario in monochrome.
+- Allocate orange where it matters most: decision number, active scenario, or current step, under the 15% visible-element ceiling. The scenario explorer may use `--scenario-mark` for active bars and endpoints, plus optional semantic hues for genuinely distinct teaching concepts when the §3 gate passes. Inactive data, reference ticks and supporting UI stay neutral. The selected scenario remains identifiable without color.
 - Use `--texture-dot` for one subtle dot field at 26px pitch. It may extend over the page canvas. Opaque content surfaces stay solid, and print removes the texture.
 - Use `--text-secondary` for resting control labels and `--line-strong` where a control boundary carries meaning. Keep the keyboard focus treatment from §7.
 
@@ -755,7 +755,7 @@ The following token overrides are local to this profile. Other roles inherit fro
 
 ## 11. WHAT WOULD BREAK THIS DIRECTION
 
-1. **Spending the accent more than once per screen.** If orange appears on a severity badge *and* a date chip *and* a progress bar in one viewport, every item reads urgent, so none do — and the artifact becomes a dashboard. If something feels flat without color, the fix is a rule or a rail label, never a second orange.
+1. **Using color without meaning, or refusing useful color.** Orange on more than 15% of meaningful visible elements, or arbitrary secondary colors without distinct conceptual roles, weakens hierarchy. Equally, refusing an explanatory accent or useful category hue solely to preserve the obsolete one-accent rule can reduce comprehension. Apply both §3 gates.
 2. **Reaching for a card grid.** `repeat(3, 1fr)` of equal boxes is the failure mode in every medium: the three-column feature section, the three-card slide, the three-panel poster. Ruled rows with a label gutter carry density while staying calm.
 3. **Making Persian wear Latin's clothes.** No `text-transform: uppercase`. No `letter-spacing`. No Vazirmatn Light below 15px on black. No Latin digits inside a Persian sentence. No monospace face for Persian metadata. And no physical CSS directions anywhere.
 4. **Shipping "Arabic support" and calling it Persian.** Arabic-Indic digits, an Arabic ك or ي, an Arabic-first font, a missing ZWNJ — any one of these tells a Persian reader in the first line that nobody who reads the language looked at this. It is not a localisation bug; it reads as contempt.
@@ -787,11 +787,12 @@ Run applicable checks in dark and light for every selected language. Mark langua
 **Color**
 
 - [ ] Zero literal color values outside the token block — including SVG, charts, inline styles.
-- [ ] At most one accent element visible per viewport / slide / poster.
-- [ ] Accent appears only in a form permitted by §3 or the single scenario region defined in §10.5.
-- [ ] Headings, links, control hover states, focus rings, gradients, and shadows carry no accent. Charts use §8 unless §10.5 applies.
+- [ ] Orange appears on at most 15% of meaningful visible elements in every viewport / slide / poster and relevant interaction state. Count meaningful units, not raw DOM/SVG primitives; no minimum is imposed.
+- [ ] Orange meaningfully identifies actions, selection, critical data or explanatory focus, rather than decorative accents.
+- [ ] Every secondary hue passes the §3 Secondary Color Gate, maps consistently to a concept, and is never used as decorative UI color. Charts follow §8; generic accent glows, gradients and shadows remain prohibited.
 - [ ] Focus ring is `2px solid var(--text-primary)`, offset 2px, everywhere.
 - [ ] Light and dark differ only by token values — no `[data-theme]` layout or structure overrides.
+- [ ] Colored diagrams and series remain distinguishable using labels/shapes/patterns without color, and semantic marks/text meet applicable contrast requirements.
 
 **Type**
 
