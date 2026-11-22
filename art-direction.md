@@ -507,6 +507,22 @@ Inspect the product, its interaction frequency, existing motion tokens, and user
 
 Review each motion for purpose, frequency, timing, easing, origin, interruption, performance, reduced motion, and cohesion. Prefer removing or reducing unnecessary motion before polishing it. Inspect rapid reversal, keyboard and touch behavior, and reduced-motion states. When visual feel cannot be observed, report it as unverified; inspect slowed playback and real devices where feasible. For an explicit motion review, report findings in a Before / After / Why table with locations and a verdict.
 
+
+### Educational motion and progressive skill routing (HTML/SVG)
+
+For tutoring, conceptual explainers, simulations and interactive learning, use `skills/art-direction/references/learning-motion.md` and `skills/art-direction/references/skill-routing.md`. If the full repository is not available, use the companion files supplied with the installed skill. The rest of §9 remains the default for ordinary interfaces.
+
+**Learning Value Gate before motion:** State what the learner should be able to explain or predict. Compare static explanation, interactive-static diagram, controlled playback and interactive animation. Motion is permitted only when it communicates meaningful temporal/causal relationships, transformations, sequences or dependencies more clearly than a static alternative, without misleading intermediate states or accessibility costs. If unsure, choose static. An unanimated explanation is a successful outcome.
+
+**Prefer interactive learning when educationally justified.** Learners should be able to change relevant inputs, inspect outcomes, compare scenarios or step through a process, with interruption, reversal and reset where valuable. Do not require play/pause or sliders when they add nothing. Maintain a single authoritative model for controls, geometry, numbers and labels. Use semantic HTML and accessible SVG; preserve static/print and reduced-motion alternatives.
+
+**Chart exception:** The §8 default ban on chart animation remains in force for dashboards, reports and other functional data. Educational charts may interpolate between explicitly user-selected states only when that transition genuinely teaches a relationship, does not fabricate observations, maintains stable axes and units, and makes exact values immediately available. Animating every mount, refresh or readout remains forbidden.
+
+**Optional specialist skills:** The Art Direction skill acts as a progressive orchestrator in Codex. It routes only approved, necessary tasks to the specific installed skills `find-animation-opportunities`, `animate`, `anatomy`, `animation-performance`, `improve-animations`, `remove-animations`, and `review-animations`. Missing allowlisted skills may be installed on demand by `skills/art-direction/scripts/ensure-skill.mjs`, subject to Codex sandbox and network permission. Never silently install all skills or claim automatic invocation that the host prohibits. `review-animations` currently disables model invocation; respect this restriction.
+
+**Anatomy artwork exception:** When the Anatomy specialist is justified, retain its exact visual character, isometric composition, materials, lighting, depth, shadows, shading structure, components and animation craft. Only color palette adaptation is permitted. The Art Direction rules govern the surrounding page, not the inner Anatomy figure. Within the figure, Anatomy-specific visual directives take precedence over the default flat/grayscale, no-shadow or no-gradient restrictions. Preserve tonal relationships when changing colors.
+
+
 ---
 
 ## 10. MEDIUM TRANSLATIONS
@@ -817,6 +833,19 @@ Run applicable checks in dark and light for every selected language. Mark langua
 - [ ] `prefers-reduced-motion` handled.
 - [ ] Print defaults to light and supports requested static theme variants; reveal states forced visible; `break-inside: avoid` on rows and cards.
 - [ ] The artifact still reads correctly in pure monochrome — severity, status and emphasis all survive.
+
+
+**Educational motion (when explanatory HTML/SVG is requested)**
+
+- [ ] A concrete learning objective and static baseline were considered before animation.
+- [ ] Every animated candidate passed the Learning Value Gate; unnecessary candidates were rejected.
+- [ ] Learner interactions manipulate meaningful states or inputs rather than trigger decorative playback.
+- [ ] State, visual geometry, text labels, numeric results, units and scales use one consistent model; intermediate states are truthful.
+- [ ] Rapid input/reversal and reset leave no stale frames; reading and keyboard/touch control are never blocked.
+- [ ] Reduced-motion and non-script/print alternatives preserve the explanation.
+- [ ] Any external skill was genuinely installed/available and used within its permitted scope. Installation and missing dependencies are reported accurately.
+- [ ] An Anatomy figure, if used, retains its native visual composition, depth, lighting, shapes, shading and motion; only palette colors were adapted.
+- [ ] Explicitly allowed external review-only skills did not mutate implementation; `review-animations` was not auto-invoked against its metadata.
 
 **Long-form web documents (§10.5)**
 
